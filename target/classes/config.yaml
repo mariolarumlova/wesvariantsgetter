@@ -1,0 +1,29 @@
+samples:
+#IDs of samples put in "samples" directory
+      ids: ["SRR7501654", "SRR7501665"]
+#suffix to paired-end samples IDs
+      suffix: "_"
+#path to samples
+      path: "fastq/"
+#samples extension
+      ext: ".fastq"
+#path to genome
+genome:
+#reference genome name
+      id: "hg38"
+#path to a reference genome
+      path: "/media/lukasz/3bd84083-5cb2-415a-ad9c-4e453ce7cffd/MRumlova/genomes/hg38"
+#reference genome extension
+      ext: ".fa"
+#path to external tools not included in conda
+programs:
+      path: "/media/lukasz/3bd84083-5cb2-415a-ad9c-4e453ce7cffd/MRumlova/programs/"
+rules:
+      prepare_genome: true
+      removing_adapters: true
+      quality_filtering: true
+      min_phred_score: "20"
+      mapper: "bowtie2"
+      remove_duplicates: true
+      variant_caller: "fasd-somatic"
+      annotate: true

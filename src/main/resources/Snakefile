@@ -1,0 +1,47 @@
+#simplified parameters without use of config files
+#SAMPLES = ["SRR7501659", "SRR7501663"]
+#GENOME = "/media/lukasz/3bd84083-5cb2-415a-ad9c-4e453ce7cffd/MRumlova/genomes/hg38.fa"
+#GENOME_REF = "/media/lukasz/3bd84083-5cb2-415a-ad9c-4e453ce7cffd/MRumlova/genomes/hg38"
+#PROGRAMS_DEST = "/media/lukasz/3bd84083-5cb2-415a-ad9c-4e453ce7cffd/MRumlova/programs/"
+
+configfile: "config.yaml"
+SAMPLES = config["samples"]["ids"]
+GENOME = config["genome"]["path"] + config["genome"]["ext"]
+GENOME_REF = config["genome"]["path"]
+PROGRAMS_DEST = config["programs"]["path"]
+
+if config["rules"]["annotate"]:
+    include: "rules/annotate.smk"
+    FINAL_OUTPUT = "final_result/myanno." + config["genome"]["id"] + "_multianno.csv"
+else:
+    FINAL_OUTPUT = "calls/variants.vcf"
+
+rule all:
+    input:
+        FINAL_OUTPUT
+
+if config["rules"]["prepare_genome"]:
+    include: "rules/prepare_genome.smk"
+
+if config["rules"]["removing_adapters"]:
+    include: "rules/remove_adapters.smk"
+
+if config["rules"]["quality_filtering"]:
+    include: "rules/quality_filtering.smk"
+
+#for now 2 mappers are included
+if config["rules"]["mapper"]=="bowtie2":
+    include: "rules/map_bowtie2.smk"
+else: #case bwa is selected
+    include: "rules/map_bwa.smk"
+
+include: "rules/sort.smk"
+include: "rules/mark_duplicates.smk"
+include: "rules/realign.smk"
+
+if config["rules"]["variant_caller"]=="snvsniffer":
+    include: "rules/call_snv_sniffer.smk"
+elif config["rules"]["variant_caller"]=="fasdsomatic":
+    include: "rules/call_fasd_somatic.smk"
+else: #default: bcf tools
+    include: "rules/call_bcftools.smk"

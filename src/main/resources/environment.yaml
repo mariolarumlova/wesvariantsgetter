@@ -1,0 +1,26 @@
+channels:
+  - bioconda
+  - conda-forge
+  - daler
+dependencies:
+  - snakemake-minimal =5.2.4
+  - python =3.6
+  - bamtools =2.5.1
+  - bbmap =38.22
+  - bcftools =1.9
+  - bowtie2 =2.3.4.3
+  - bwa =0.7.17
+  - ea-utils =1.1.2.779
+  - fastqc =0.11.5
+  - freebayes =1.2.0
+  - gatk =3.8
+  - igv =2.4.9
+  - java-jdk 8.0.92
+  - libgcc-ng =8.2.0
+  - perl =5.26.2
+  - perl-threaded =5.22.0
+  - picard =2.18.16
+  - samtools =1.9
+  - sratoolkit =2.5.7
+  - trimmomatic =0.38
+  - vcflib =1.0.0_rc1

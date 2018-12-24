@@ -3,6 +3,9 @@ import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Map;
 
 public class YamlParser {
@@ -10,8 +13,12 @@ public class YamlParser {
     public static void main(String[] args) {
         try {
             Config config = read("/config_example.yaml");
-            write(config, "E:\\Projects\\wesvariantsgetter\\src\\main\\resources");
-        } catch (IOException e) {
+            //TODO: How to copy files from RESOURCES folder to analysis folder?
+            URL resource = YamlParser.class.getResource("config.yaml");
+            File file = Paths.get(resource.toURI()).toFile();
+            String filePath = file.getAbsolutePath();
+            write(config, filePath);//"E:\\Projects\\wesvariantsgetter\\src\\main\\resources");
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
@@ -42,7 +49,7 @@ public class YamlParser {
 
     public static void write(Config config, String path) {
         String yamlToWrite = makeYaml(config);
-            try (PrintWriter out = new PrintWriter(path + "\\config.yaml")) {
+            try (PrintWriter out = new PrintWriter(path)) {
                 out.println(yamlToWrite);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

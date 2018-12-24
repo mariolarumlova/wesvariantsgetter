@@ -14,7 +14,7 @@ public class YamlParser {
         try {
             Config config = read("/config_example.yaml");
             //TODO: How to copy files from RESOURCES folder to analysis folder?
-            URL resource = YamlParser.class.getResource("config.yaml");
+            URL resource = YamlParser.class.getClassLoader().getResource("config.yaml");
             File file = Paths.get(resource.toURI()).toFile();
             String filePath = file.getAbsolutePath();
             write(config, filePath);//"E:\\Projects\\wesvariantsgetter\\src\\main\\resources");
@@ -33,9 +33,9 @@ public class YamlParser {
 
     public static String makeYaml(Config config) {
 //        TEMP
-//        Map<String, Object> rules = config.getRules();
-//        rules.put("mapper", "bwa");
-//        config.setRules(rules);
+        Map<String, Object> rules = config.getRules();
+        rules.put("mapper", "christmas");
+        config.setRules(rules);
 //        TEMP
 
         Map<String, Map<String, Object>> map = config.getAsMap();

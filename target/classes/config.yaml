@@ -7,7 +7,7 @@ rules:
   removing_adapters: true
   quality_filtering: true
   min_phred_score: '20'
-  mapper: bwa
+  mapper: christmas
   remove_duplicates: true
   variant_caller: fasd-somatic
   annotate: true

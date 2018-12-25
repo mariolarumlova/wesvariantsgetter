@@ -16,11 +16,11 @@ public class RunApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-        primaryStage.setTitle("WES pipeline ver 1.0");
-//        PropertiesGetter propertiesGetter = new PropertiesGetter();
-//        Boolean firstUsage = Boolean.parseBoolean(propertiesGetter.getValue("firstUsage"));
+        primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("version"));
+//        Boolean firstUsage = Boolean.parseBoolean(PropertiesGetter.getValue("firstUsage"));
         Boolean firstUsage = PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class);
-        Scene scene = getScene(firstUsage);
+        String language = PreferencesManager.getInstance().getPreference("language", String.class);
+        Scene scene = getScene(firstUsage, language);
         primaryStage.setScene(scene);
         primaryStage.show();
         } catch (IOException | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
@@ -28,15 +28,11 @@ public class RunApp extends Application {
         }
     }
 
-    public Scene getScene(Boolean firstUsage) throws IOException {
+    public Scene getScene(Boolean firstUsage, String language) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setResources(ResourceBundle.getBundle("application"));
-        Parent root;
-        if (firstUsage) {
-            root = loader.load(getClass().getResourceAsStream("\\view\\Configuration.fxml"));
-        } else {
-            root = loader.load(getClass().getResourceAsStream("\\view\\MainWindow.fxml"));
-        }
+        loader.setResources(ResourceBundle.getBundle("labels_" + language));
+        String path = firstUsage ? "\\view\\Configuration.fxml" : "\\view\\MainWindow.fxml";
+        Parent root = loader.load(getClass().getResourceAsStream(path));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getClassLoader().getResource("\\bootstrap3.css").toExternalForm());
         return scene;

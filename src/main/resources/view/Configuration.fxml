@@ -21,8 +21,8 @@
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="%firstUsageInstallLabel" textAlignment="CENTER" wrapText="true" GridPane.halignment="CENTER" />
             <Label alignment="CENTER" contentDisplay="CENTER" stylesheets="@../bootstrap3.css" text="%firstUsageSetupLabel" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="%firstUsageInstallButton" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="%fistUsageSetupButton" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="firstUsageInstallButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onInstallButtonPressed" text="%firstUsageInstallButton" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="firstUsageSetupButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSetupButtonPressed" text="%fistUsageSetupButton" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

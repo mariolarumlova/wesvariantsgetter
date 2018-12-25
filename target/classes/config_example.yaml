@@ -27,3 +27,7 @@ rules:
       remove_duplicates: true
       variant_caller: "fasd-somatic"
       annotate: true
+miniconda3:
+      path: /home/lukasz/miniconda3/
+env:
+      name: ngs

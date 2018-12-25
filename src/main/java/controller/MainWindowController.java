@@ -3,16 +3,13 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import settings.GuiHandler;
 import settings.PreferencesManager;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 public class MainWindowController {//implements Initializable {
 
@@ -76,11 +73,12 @@ public class MainWindowController {//implements Initializable {
         try {
             Stage stage = (Stage) analyseButton.getScene().getWindow();
             String language = PreferencesManager.getInstance().getPreference("language", String.class);
-            Scene scene = GuiHandler.getInstance().getScene(new FXMLLoader(), language, "AnalysisProgress");
+            Scene scene = RunApp.getScene(language, "AnalysisProgress");
             stage.setScene(scene);
             stage.show();
         } catch (IOException | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
             GuiHandler.getInstance().showWindow(e.getMessage());
+            e.printStackTrace();
         }
     }
 

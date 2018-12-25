@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f859a7f-ad4b-4722-84a1-e2ff7c99efdb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/RunApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/settings/PreferencesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/settings/PreferencesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/labels_pl.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/labels_pl.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,7 +18,7 @@
       <file leaf-file-name="ConfigurationController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/ConfigurationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="357">
               <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -48,7 +45,7 @@
       <file leaf-file-name="RunApp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/RunApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
+            <state relative-caret-position="289">
               <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -80,34 +77,34 @@
       </file>
       <file leaf-file-name="MainWindow.fxml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="1258">
-              <caret line="74" column="117" lean-forward="true" selection-start-line="74" selection-start-column="117" selection-end-line="74" selection-end-column="117" />
+            <state relative-caret-position="272">
+              <caret line="16" column="111" lean-forward="true" selection-start-line="16" selection-start-column="111" selection-end-line="16" selection-end-column="111" />
             </state>
           </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file leaf-file-name="MainWindowController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/MainWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+            <state relative-caret-position="255">
+              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
               <folding>
                 <element signature="e#158#159#0" expanded="true" />
-                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#207#208#0" expanded="true" />
                 <element signature="e#279#280#0" expanded="true" />
-                <element signature="e#315#316#0" expanded="true" />
+                <element signature="e#330#331#0" expanded="true" />
                 <element signature="e#402#403#0" expanded="true" />
-                <element signature="e#438#439#0" expanded="true" />
+                <element signature="e#449#450#0" expanded="true" />
                 <element signature="e#521#522#0" expanded="true" />
-                <element signature="e#557#558#0" expanded="true" />
+                <element signature="e#568#569#0" expanded="true" />
                 <element signature="e#641#642#0" expanded="true" />
-                <element signature="e#677#678#0" expanded="true" />
+                <element signature="e#689#690#0" expanded="true" />
                 <element signature="e#762#763#0" expanded="true" />
-                <element signature="e#798#799#0" expanded="true" />
+                <element signature="e#810#811#0" expanded="true" />
                 <element signature="e#877#878#0" expanded="true" />
-                <element signature="e#913#914#0" expanded="true" />
+                <element signature="e#923#924#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,12 +113,8 @@
       <file leaf-file-name="PreferencesManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/settings/PreferencesManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
-              <folding>
-                <element signature="e#2263#2264#0" expanded="true" />
-                <element signature="e#2296#2297#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1088">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -307,8 +300,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -428,14 +421,16 @@
       <workItem from="1545749526088" duration="1481000" />
       <workItem from="1545751787814" duration="4037000" />
       <workItem from="1545756481982" duration="6200000" />
+      <workItem from="1545763684321" duration="369000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36531000" />
+    <option name="totallyTimeSpent" value="36900000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -447,11 +442,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3298969" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3298969" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20268457" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -498,20 +493,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/Configuration.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="58" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/RunApp.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -548,12 +543,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="58" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/RunApp.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -590,12 +585,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/SetupAnalysis.fxml" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/SetupEnvironment.fxml" />
@@ -610,28 +605,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/GenomePreparingProgress.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/Configuration.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/AnalysisProgress.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/GenomePreparingProgressController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -685,20 +680,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/AnalysisProgress.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/GenomePreparingProgress.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/SetupAnalysis.fxml" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/SetupEnvironment.fxml" />
@@ -727,16 +722,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/Configuration.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/ConfigurationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="357">
           <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -774,30 +769,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/MainWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        <state relative-caret-position="255">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
           <folding>
             <element signature="e#158#159#0" expanded="true" />
-            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#207#208#0" expanded="true" />
             <element signature="e#279#280#0" expanded="true" />
-            <element signature="e#315#316#0" expanded="true" />
+            <element signature="e#330#331#0" expanded="true" />
             <element signature="e#402#403#0" expanded="true" />
-            <element signature="e#438#439#0" expanded="true" />
+            <element signature="e#449#450#0" expanded="true" />
             <element signature="e#521#522#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
+            <element signature="e#568#569#0" expanded="true" />
             <element signature="e#641#642#0" expanded="true" />
-            <element signature="e#677#678#0" expanded="true" />
+            <element signature="e#689#690#0" expanded="true" />
             <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#798#799#0" expanded="true" />
+            <element signature="e#810#811#0" expanded="true" />
             <element signature="e#877#878#0" expanded="true" />
-            <element signature="e#913#914#0" expanded="true" />
+            <element signature="e#923#924#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/RunApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
+        <state relative-caret-position="289">
           <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -821,12 +816,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/settings/PreferencesManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
-          <folding>
-            <element signature="e#2263#2264#0" expanded="true" />
-            <element signature="e#2296#2297#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1088">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
@@ -838,12 +829,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" column="117" lean-forward="true" selection-start-line="74" selection-start-column="117" selection-end-line="74" selection-end-column="117" />
+        <state relative-caret-position="272">
+          <caret line="16" column="111" lean-forward="true" selection-start-line="16" selection-start-column="111" selection-end-line="16" selection-end-column="111" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
 </project>

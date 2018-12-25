@@ -1,7 +1,7 @@
 package controller;
 
 import javafx.event.ActionEvent;
-import settings.PreferencesManager;
+import tools.PreferencesManager;
 
 public class ConfigurationController {
 

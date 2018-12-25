@@ -3,9 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="3f859a7f-ad4b-4722-84a1-e2ff7c99efdb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RunApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RunApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ConfigurationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ConfigurationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GuiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/GuiHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/settings/GuiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GuiHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RunApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RunApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/settings/PreferencesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/PreferencesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/settings/PropertiesGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/PropertiesGetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/settings/YamlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/YamlParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bootstrap3.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bootstrap3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/bootstrap3.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/bootstrap3.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,45 +25,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/model/Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
-              <folding>
-                <element signature="e#2231#2232#0" expanded="true" />
-                <element signature="e#2257#2258#0" expanded="true" />
-                <element signature="e#2308#2309#0" expanded="true" />
-                <element signature="e#2338#2339#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RunApp.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/RunApp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="44" column="79" selection-start-line="44" selection-start-column="79" selection-end-line="44" selection-end-column="79" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GuiHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/GuiHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-562">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
@@ -66,11 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="YamlParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/settings/YamlParser.java">
+      <file leaf-file-name="MainWindow.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="238">
+              <caret line="69" column="47" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="47" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file leaf-file-name="RunApp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controller/RunApp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="40" column="99" lean-forward="true" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="99" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,21 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainWindow.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file leaf-file-name="MainWindowController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainWindowController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/MainWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
+            <state relative-caret-position="272">
+              <caret line="36" column="59" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#851#852#0" expanded="true" />
@@ -112,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PreferencesManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/settings/PreferencesManager.java">
+      <file leaf-file-name="PropertiesGetter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tools/PropertiesGetter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="56" />
+            <state relative-caret-position="187">
+              <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -124,8 +92,8 @@
       <file leaf-file-name="labels_pl.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/labels_pl.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+            <state relative-caret-position="374">
+              <caret line="22" column="18" selection-start-line="22" selection-end-line="22" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -180,13 +148,15 @@
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/settings/PreferencesManager.java" />
         <option value="$PROJECT_DIR$/src/main/resources/labels_pl.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/settings/RunApp.java" />
         <option value="$PROJECT_DIR$/src/main/java/settings/GuiHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/RunApp.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/GuiHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/MainWindowController.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/RunApp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tools/GuiHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tools/YamlParser.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/MainWindowController.java" />
       </list>
     </option>
   </component>
@@ -267,7 +237,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="settings" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wesvariantsgetter" type="b2602c69:ProjectViewProjectNode" />
@@ -341,7 +311,7 @@
   </component>
   <component name="RunManager" selected="Application.RunApp">
     <configuration name="PreferencesManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="settings.PreferencesManager" />
+      <option name="MAIN_CLASS_NAME" value="tools.PreferencesManager" />
       <module name="wesvariantsgetter" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -351,7 +321,7 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
     <configuration name="YamlParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="settings.YamlParser" />
+      <option name="MAIN_CLASS_NAME" value="tools.YamlParser" />
       <module name="wesvariantsgetter" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -427,12 +397,12 @@
       <workItem from="1545749526088" duration="1481000" />
       <workItem from="1545751787814" duration="4037000" />
       <workItem from="1545756481982" duration="6200000" />
-      <workItem from="1545763684321" duration="6820000" />
+      <workItem from="1545763684321" duration="8230000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43351000" />
+    <option name="totallyTimeSpent" value="44761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -478,14 +448,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/settings/YamlParser.java</url>
-          <line>17</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/MainWindowController.java</url>
-          <line>71</line>
+          <line>70</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -526,7 +490,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/settings/YamlParser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tools/YamlParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
@@ -568,7 +532,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/settings/YamlParser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tools/YamlParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="15" selection-start-line="15" selection-end-line="16" />
@@ -636,7 +600,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/settings/YamlParser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tools/YamlParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
@@ -723,6 +687,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yaml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config_example.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Snakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/Programy/Java/jdk1.8.0_144/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="2423" column="17" selection-start-line="2423" selection-start-column="17" selection-end-line="2423" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tools/GuiHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -736,11 +732,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yaml" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config_example.yaml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tools/YamlParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        <state relative-caret-position="357">
+          <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -751,73 +749,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Snakefile">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tools/PreferencesManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        <state relative-caret-position="-1106">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/labels_pl.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+        <state relative-caret-position="238">
+          <caret line="69" column="47" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="47" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/settings/PropertiesGetter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tools/PropertiesGetter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/view/MainWindow.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/RunApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/settings/PreferencesManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/settings/YamlParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="135">
+          <caret line="40" column="99" lean-forward="true" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="99" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/Programy/Java/jdk1.8.0_144/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/labels_pl.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="2423" column="17" selection-start-line="2423" selection-start-column="17" selection-end-line="2423" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/GuiHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-562">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="374">
+          <caret line="22" column="18" selection-start-line="22" selection-end-line="22" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/MainWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
+        <state relative-caret-position="272">
+          <caret line="36" column="59" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#851#852#0" expanded="true" />
@@ -832,16 +806,6 @@
             <element signature="e#1382#1383#0" expanded="true" />
             <element signature="e#1455#1456#0" expanded="true" />
             <element signature="e#1503#1504#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/RunApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="44" column="79" selection-start-line="44" selection-start-column="79" selection-end-line="44" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

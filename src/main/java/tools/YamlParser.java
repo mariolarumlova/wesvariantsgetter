@@ -1,4 +1,4 @@
-package settings;
+package tools;
 
 import model.Config;
 import org.yaml.snakeyaml.DumperOptions;
@@ -49,12 +49,10 @@ public class YamlParser {
         return yaml.dump(map);
     }
 
-    public static void write(Config config, String path) {
+    public static void write(Config config, String path) throws FileNotFoundException{
         String yamlToWrite = makeYaml(config);
             try (PrintWriter out = new PrintWriter(path)) {
                 out.println(yamlToWrite);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             }
     }
 }

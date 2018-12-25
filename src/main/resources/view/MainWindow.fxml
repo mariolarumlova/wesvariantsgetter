@@ -47,7 +47,7 @@
             <Label text="%genomeChooserLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="2" />
             <TextField fx:id="genomeDestTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
             <Button fx:id="genomeDestButton" mnemonicParsing="false" onAction="#onGenomeDestButtonPressed" text="%browseButton" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <CheckBox fx:id="prepareGenomeComboBox" mnemonicParsing="false" text="%prepareGenomeCheckBox" wrapText="true" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <CheckBox fx:id="prepareGenomeCheckBox" mnemonicParsing="false" text="%prepareGenomeCheckBox" wrapText="true" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="2" />
             <Label text="%analysisDestLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <TextField fx:id="analysisDestTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <Button fx:id="analysisDestButton" mnemonicParsing="false" onAction="#onAnalysisDestButtonPressed" text="%browseButton" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
@@ -59,7 +59,7 @@
             <Label text="%reverseLabel" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <Label text="%startPointLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="6" />
             <Label text="%endPointLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-            <CheckBox fx:id="removeDuplicatesComboBox" mnemonicParsing="false" text="%removingDuplicatesCheckBox" GridPane.columnSpan="6" GridPane.rowIndex="9" />
+            <CheckBox fx:id="removeDuplicatesCheckBox" mnemonicParsing="false" text="%removingDuplicatesCheckBox" GridPane.columnSpan="6" GridPane.rowIndex="9" />
             <Label text="%minPhredScoreLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="10" />
             <Label text="%mapperLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="8" />
             <Label text="%variantCallerLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="11" />

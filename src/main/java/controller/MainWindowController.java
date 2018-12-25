@@ -1,48 +1,53 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import settings.PreferencesManager;
+import tools.GuiHandler;
+import tools.PreferencesManager;
+import tools.PropertiesGetter;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainWindowController {//implements Initializable {
+public class MainWindowController implements Initializable {
 
-    @FXML
-    AnchorPane anchorPane;
+    String propFileName;
 
     @FXML
     Button analyseButton;
+    @FXML
+    ComboBox startPointComboBox;
+    @FXML
+    ComboBox endPointComboBox;
+    @FXML
+    ComboBox mapperComboBox;
+    @FXML
+    ComboBox variantCallerComboBox;
 
-//    @FXML
-//    GridPane gridPane;
-//
-//    Stage stage;
-//
-//    @Override
-//    public void initialize(URL url, ResourceBundle rb) {
-//        Platform.runLater(() -> {
-//            do {
-//                Scene scene = gridPane.getScene();
-//                if (scene != null) {
-//                    stage = (Stage) scene.getWindow();
-//                }
-//            } while (stage == null);
-//        });
-//    }
-//
-//    public static void swapView(Parent target, Node node) {
-//        GridPane parentVBox = (GridPane) node.getParent();
-//        if (parentVBox.getChildren().size() > 1)
-//            parentVBox.getChildren().remove(1);
-//
-//        parentVBox.getChildren().add(target);
-//    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            propFileName = "labels_" + PreferencesManager.getInstance().getPreference("language", String.class);
+            setComboBox(startPointComboBox, "startPointComboBox");
+            setComboBox(endPointComboBox, "endPointComboBox");
+            setComboBox(mapperComboBox, "mapperComboBox");
+            setComboBox(variantCallerComboBox, "variantCallerComboBox");
+
+        } catch (IOException | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
+            e.printStackTrace();
+            GuiHandler.getInstance().showWindow(e.getMessage());
+        }
+    }
+
 
     public void onGenomeDestButtonPressed(ActionEvent actionEvent) {
         System.out.println("genome dest");
@@ -72,8 +77,7 @@ public class MainWindowController {//implements Initializable {
         System.out.println("ANALYSE!");
         try {
             Stage stage = (Stage) analyseButton.getScene().getWindow();
-            String language = PreferencesManager.getInstance().getPreference("language", String.class);
-            Scene scene = RunApp.getScene(language, "AnalysisProgress");
+            Scene scene = RunApp.getScene( "AnalysisProgress");
             stage.setScene(scene);
             stage.show();
         } catch (IOException | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
@@ -82,5 +86,10 @@ public class MainWindowController {//implements Initializable {
         }
     }
 
-
+    public void setComboBox(ComboBox comboBox, String name) throws IOException {
+        ObservableList<String> options =
+                FXCollections.observableArrayList(PropertiesGetter.getValue(propFileName, name).split("#"));
+        comboBox.setItems(options);
+        comboBox.getSelectionModel().selectFirst();
+    }
 }

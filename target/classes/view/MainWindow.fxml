@@ -67,10 +67,10 @@
             <Button fx:id="tumorReverseButton" mnemonicParsing="false" onAction="#onTumorReverseButtonPressed" text="%browseButton" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
             <Button fx:id="normalForwardButton" mnemonicParsing="false" onAction="#onNormalForwardButtonPressed" text="%browseButton" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <Button fx:id="normalReverseButton" mnemonicParsing="false" onAction="#onNormalReverseButtonPressed" text="%browseButton" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <ComboBox fx:id="startPointComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-            <ComboBox fx:id="endPointComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <ComboBox fx:id="mapperComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-            <ComboBox fx:id="variantCallerComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+            <ComboBox fx:id="startPointComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <ComboBox fx:id="endPointComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <ComboBox fx:id="mapperComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+            <ComboBox fx:id="variantCallerComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
             <TextField fx:id="minPhredScoreTextField" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="10" />
             <Button fx:id="analyseButton" layoutX="432.0" layoutY="164.0" mnemonicParsing="false" onAction="#onAnalyseButtonPressed" text="%analyseButton" GridPane.columnSpan="7" GridPane.halignment="CENTER" GridPane.rowIndex="12">
                <font>

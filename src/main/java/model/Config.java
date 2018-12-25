@@ -1,5 +1,8 @@
 package model;
 
+import tools.PreferencesManager;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,21 +15,22 @@ public class Config {
     private Map<String, Object> miniconda3;
     private Map<String, Object> env;
 
-    public Config() {
-    }
-
-    public Config(Map<String, Object> miniconda3, Map<String, Object> env) {
+    public Config() throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+        Map<String, Object> miniconda3 = new HashMap<>();
+        miniconda3.put("path", PreferencesManager.getInstance().getPreference("miniconda3", String.class));
         this.miniconda3 = miniconda3;
+
+        Map<String, Object> env = new HashMap<>();
+        env.put("name", PreferencesManager.getInstance().getPreference("env_name", String.class));
         this.env = env;
     }
 
-    public Config(Map<String, Object> samples, Map<String, Object> genome, Map<String, Object> programs, Map<String, Object> rules, Map<String, Object> miniconda3, Map<String, Object> env) {
+    public Config(Map<String, Object> samples, Map<String, Object> genome, Map<String, Object> programs, Map<String, Object> rules) throws IOException, PreferencesManager.IncorrectKeyException, PreferencesManager.UnsupportedTypeException {
+        this();
         this.samples = samples;
         this.genome = genome;
         this.programs = programs;
         this.rules = rules;
-        this.miniconda3 = miniconda3;
-        this.env = env;
     }
 
     public Map<String, Map<String, Object>> getAsMap() {

@@ -23,7 +23,7 @@ public final class PreferencesManager {
     }
 
     public <T> T getPreference(String key, Class<T> type) throws UnsupportedTypeException, IOException, IncorrectKeyException {
-        String defaultValue = PropertiesGetter.getValue(key);
+        String defaultValue = PropertiesGetter.getValue("application", key);
         if (defaultValue == null) {
             throw new IncorrectKeyException();
         }

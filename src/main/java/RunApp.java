@@ -3,6 +3,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import settings.PreferencesManager;
+import settings.PropertiesGetter;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -16,8 +18,8 @@ public class RunApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-        primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("version"));
-//        Boolean firstUsage = Boolean.parseBoolean(PropertiesGetter.getValue("firstUsage"));
+        primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("application", "version"));
+//        Boolean firstUsage = Boolean.parseBoolean(settings.PropertiesGetter.getValue("firstUsage"));
         Boolean firstUsage = PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class);
         String language = PreferencesManager.getInstance().getPreference("language", String.class);
         Scene scene = getScene(firstUsage, language);

@@ -19,6 +19,7 @@ genome:
 programs:
       path: "/media/lukasz/3bd84083-5cb2-415a-ad9c-4e453ce7cffd/MRumlova/programs/"
 rules:
+      path: "rules/"
       prepare_genome: true
       removing_adapters: true
       quality_filtering: true
@@ -27,3 +28,7 @@ rules:
       remove_duplicates: true
       variant_caller: "fasd-somatic"
       annotate: true
+miniconda3:
+      path: /home/lukasz/miniconda3/
+env:
+      name: ngs

@@ -1,3 +1,5 @@
+package settings;
+
 import java.io.IOException;
 import java.util.prefs.Preferences;
 
@@ -67,12 +69,12 @@ public final class PreferencesManager {
 
 //    public static void main(String[] args) {
 //        try {
-//            PreferencesManager.getInstance().setPreference("test", "zmiana", String.class);
-//            String testString = PreferencesManager.getInstance().getPreference("test", String.class);
+//            settings.PreferencesManager.getInstance().setPreference("test", "zmiana", String.class);
+//            String testString = settings.PreferencesManager.getInstance().getPreference("test", String.class);
 //            System.out.println(testString);
 //
-//            PreferencesManager.getInstance().removePreference("test");
-//            testString = PreferencesManager.getInstance().getPreference("test", String.class);
+//            settings.PreferencesManager.getInstance().removePreference("test");
+//            testString = settings.PreferencesManager.getInstance().getPreference("test", String.class);
 //            System.out.println(testString);
 //        } catch (UnsupportedTypeException | IOException | IncorrectKeyException e) {
 //            e.printStackTrace();

@@ -1,3 +1,5 @@
+package settings;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,12 +9,12 @@ import java.util.Properties;
 
 public class PropertiesGetter {
 
-    public static String getValue(String key) throws IOException {
+    public static String getValue(String propertiesFileName, String key) throws IOException {
         String result = "";
         InputStream inputStream = null;
         try {
             Properties prop = new Properties();
-            String propFileName = "application.properties";
+            String propFileName = propertiesFileName + ".properties";
 
             inputStream = PropertiesGetter.class.getClassLoader().getResourceAsStream(propFileName);
 

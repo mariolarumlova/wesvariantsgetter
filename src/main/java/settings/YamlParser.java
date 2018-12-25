@@ -1,3 +1,5 @@
+package settings;
+
 import model.Config;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;

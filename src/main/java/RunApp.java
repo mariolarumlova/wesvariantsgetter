@@ -2,6 +2,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import settings.PreferencesManager;
@@ -27,7 +30,7 @@ public class RunApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         } catch (IOException | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
-            e.printStackTrace();
+            showWindow(e.getMessage());
         }
     }
 
@@ -66,5 +69,11 @@ public class RunApp extends Application {
         int[] out = {sceneWidth, sceneHeight};
 
         return out;
+    }
+
+    public static void showWindow(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        alert.showAndWait();
     }
 }

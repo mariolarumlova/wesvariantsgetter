@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 public class PropertiesGetter {
@@ -15,7 +17,8 @@ public class PropertiesGetter {
             inputStream = PropertiesGetter.class.getClassLoader().getResourceAsStream(propFileName);
 
             if (inputStream != null) {
-                prop.load(inputStream);
+                prop.load(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+                //prop.load(inputStream);
             } else {
                 throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath");
             }

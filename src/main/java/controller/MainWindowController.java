@@ -221,6 +221,7 @@ public class MainWindowController implements Initializable {
             Config config = makeConfigFile();
             if (config != null) {
                     writeConfigFileAndCopySnakeFileToAnalysisFolder(config);
+                    //TODO: Odpalanie skryptu uruchamiającego analizę
                     Stage stage = (Stage) analyseButton.getScene().getWindow();
                     Scene scene = RunApp.getScene( "Progress");
                     stage.setScene(scene);

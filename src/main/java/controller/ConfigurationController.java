@@ -3,9 +3,12 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import tools.GuiHandler;
 import tools.PreferencesManager;
 
 import java.net.URL;
@@ -27,23 +30,27 @@ public class ConfigurationController implements Initializable {
     }
 
     public void onInstallButtonPressed(ActionEvent actionEvent) {
-        //TODO: Create a method
         try {
+            //TODO: Odpalanie skryptu instalacyjnego
+            Stage stage = (Stage) firstUsageInstallButton.getScene().getWindow();
+            Scene scene = RunApp.getScene( "Progress");
+            stage.setScene(scene);
+            stage.show();
             PreferencesManager.getInstance().setPreference("firstUsage", false, Boolean.class);
-        } catch (PreferencesManager.UnsupportedTypeException e) {
+        } catch (Exception | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }
     }
 
     public void onSetupButtonPressed(ActionEvent actionEvent) {
-        //TODO: Create a method
         try {
-            //te poniżej trzeba tu ustawić
-//        programs_path = programsPath
-//        miniconda3 = miniconda3Path
-//        env_name = ngs
-            PreferencesManager.getInstance().setPreference("firstUsage", false, Boolean.class);
-        } catch (PreferencesManager.UnsupportedTypeException e) {
+            Stage stage = (Stage) firstUsageSetupButton.getScene().getWindow();
+            Scene scene = RunApp.getScene( "SettingPaths");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }
     }

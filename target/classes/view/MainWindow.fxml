@@ -38,48 +38,53 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="%mainLabel" textAlignment="CENTER" GridPane.columnSpan="7" GridPane.halignment="CENTER">
+            <Label text="%mainLabel" textAlignment="CENTER" GridPane.columnSpan="7" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Label text="%genomeChooserLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <TextField fx:id="genomeDestTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <Button fx:id="genomeDestButton" mnemonicParsing="false" onAction="#onGenomeDestButtonPressed" text="%browseButton" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <CheckBox fx:id="prepareGenomeCheckBox" mnemonicParsing="false" text="%prepareGenomeCheckBox" wrapText="true" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-            <Label text="%analysisDestLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <TextField fx:id="analysisDestTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <Button fx:id="analysisDestButton" mnemonicParsing="false" onAction="#onAnalysisDestButtonPressed" text="%browseButton" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label text="%tumorLabel" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Label layoutX="120.0" layoutY="115.0" text="%normalLabel" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Label text="%forwardLabel" wrapText="true" GridPane.rowIndex="4" />
-            <Label text="%reverseLabel" wrapText="true" GridPane.rowIndex="5" />
-            <Label text="%forwardLabel" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Label text="%reverseLabel" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Label text="%startPointLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-            <Label text="%endPointLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-            <CheckBox fx:id="removeDuplicatesCheckBox" mnemonicParsing="false" text="%removingDuplicatesCheckBox" GridPane.columnSpan="6" GridPane.rowIndex="9" />
-            <Label text="%minPhredScoreLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="10" />
-            <Label text="%mapperLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="8" />
-            <Label text="%variantCallerLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-            <Button fx:id="tumorForwardButton" mnemonicParsing="false" onAction="#onTumorForwardButtonPressed" text="%browseButton" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Button fx:id="tumorReverseButton" mnemonicParsing="false" onAction="#onTumorReverseButtonPressed" text="%browseButton" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <Button fx:id="normalForwardButton" mnemonicParsing="false" onAction="#onNormalForwardButtonPressed" text="%browseButton" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Button fx:id="normalReverseButton" mnemonicParsing="false" onAction="#onNormalReverseButtonPressed" text="%browseButton" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <ComboBox fx:id="startPointComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-            <ComboBox fx:id="endPointComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <ComboBox fx:id="mapperComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-            <ComboBox fx:id="variantCallerComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-            <TextField fx:id="minPhredScoreTextField" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="10" />
-            <Button fx:id="analyseButton" layoutX="432.0" layoutY="164.0" mnemonicParsing="false" onAction="#onAnalyseButtonPressed" text="%analyseButton" GridPane.columnSpan="7" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+            <Label text="%genomeChooserLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+            <TextField fx:id="genomeDestTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+            <Button fx:id="genomeDestButton" mnemonicParsing="false" onAction="#onGenomeDestButtonPressed" text="%browseButton" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <CheckBox fx:id="prepareGenomeCheckBox" mnemonicParsing="false" text="%prepareGenomeCheckBox" wrapText="true" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.rowSpan="2" />
+            <Label text="%analysisDestLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <TextField fx:id="analysisDestTextField" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <Button fx:id="analysisDestButton" mnemonicParsing="false" onAction="#onAnalysisDestButtonPressed" text="%browseButton" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label text="%tumorLabel" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Label layoutX="120.0" layoutY="115.0" text="%normalLabel" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Label text="%forwardLabel" wrapText="true" GridPane.rowIndex="6" />
+            <Label text="%reverseLabel" wrapText="true" GridPane.rowIndex="7" />
+            <Label text="%forwardLabel" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Label text="%reverseLabel" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label text="%startPointLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+            <Label text="%endPointLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+            <CheckBox fx:id="removeDuplicatesCheckBox" mnemonicParsing="false" text="%removingDuplicatesCheckBox" GridPane.columnSpan="6" GridPane.rowIndex="11" />
+            <Label text="%minPhredScoreLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+            <Label text="%mapperLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="10" />
+            <Label text="%variantCallerLabel" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="13" />
+            <Button fx:id="tumorForwardButton" mnemonicParsing="false" onAction="#onTumorForwardButtonPressed" text="%browseButton" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Button fx:id="tumorReverseButton" mnemonicParsing="false" onAction="#onTumorReverseButtonPressed" text="%browseButton" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <Button fx:id="normalForwardButton" mnemonicParsing="false" onAction="#onNormalForwardButtonPressed" text="%browseButton" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Button fx:id="normalReverseButton" mnemonicParsing="false" onAction="#onNormalReverseButtonPressed" text="%browseButton" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <ComboBox fx:id="startPointComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+            <ComboBox fx:id="endPointComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+            <ComboBox fx:id="mapperComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+            <ComboBox fx:id="variantCallerComboBox" prefWidth="300.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+            <TextField fx:id="minPhredScoreTextField" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+            <Button fx:id="analyseButton" layoutX="432.0" layoutY="164.0" mnemonicParsing="false" onAction="#onAnalyseButtonPressed" text="%analyseButton" GridPane.columnSpan="7" GridPane.halignment="CENTER" GridPane.rowIndex="15">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <TextField fx:id="tumorForwardTextField" editable="false" layoutX="267.0" layoutY="320.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="tumorReverseTextField" editable="false" layoutX="97.0" layoutY="134.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="normalForwardTextField" editable="false" layoutX="97.0" layoutY="165.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextField fx:id="normalReverseTextField" editable="false" layoutX="352.0" layoutY="134.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <TextField fx:id="tumorForwardTextField" editable="false" layoutX="267.0" layoutY="320.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="tumorReverseTextField" editable="false" layoutX="97.0" layoutY="134.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="normalForwardTextField" editable="false" layoutX="97.0" layoutY="165.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <TextField fx:id="normalReverseTextField" editable="false" layoutX="352.0" layoutY="134.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Button fx:id="changeConfigurationButton" mnemonicParsing="false" onAction="#onChangeConfigurationButtonPressed" GridPane.columnIndex="5" GridPane.halignment="RIGHT" />
+            <Button fx:id="languageButton" mnemonicParsing="false" onAction="#onLanguageButtonPressed" GridPane.columnIndex="6" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

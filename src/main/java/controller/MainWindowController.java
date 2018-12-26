@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Config;
 import org.apache.commons.io.FileUtils;
@@ -34,6 +36,10 @@ public class MainWindowController implements Initializable {
     String normalForwardWhole;
     String normalReverseWhole;
 
+    @FXML
+    Button changeConfigurationButton;
+    @FXML
+    Button languageButton;
     @FXML
     Button analyseButton;
     @FXML
@@ -99,6 +105,13 @@ public class MainWindowController implements Initializable {
             prepareGenomeCheckBox.setDisable(!prepareGenomeCheckBox.isSelected());
             removeDuplicatesCheckBox.setSelected(PreferencesManager.getInstance().getPreference("remove_duplicates", Boolean.class));
 
+            Image imageSettings = new Image(getClass().getResourceAsStream("/images/settings.png"));
+            changeConfigurationButton.setGraphic(new ImageView(imageSettings));
+            Image imageLanguage = new Image(getClass().getResourceAsStream("/images/language.png"));
+            languageButton.setGraphic(new ImageView(imageLanguage));
+            Image imageAccept = new Image(getClass().getResourceAsStream("/images/ok.png"));
+            analyseButton.setGraphic(new ImageView(imageAccept));
+
             formatsFa = new ArrayList<>();
             formatsFa.add("fasta");
             formatsFa.add("fa");
@@ -113,12 +126,38 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    public void onChangeConfigurationButtonPressed(ActionEvent actionEvent) {
+        try {
+            Stage stage = (Stage) changeConfigurationButton.getScene().getWindow();
+            Scene scene = RunApp.getScene( "Configuration");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
+            e.printStackTrace();
+        }
+    }
+
+    public void onLanguageButtonPressed(ActionEvent actionEvent) {
+        try {
+            String oldLanguage = PreferencesManager.getInstance().getPreference("language", String.class);
+            String newLanguage = oldLanguage.equals("pl") ? "en" : "pl";
+            PreferencesManager.getInstance().setPreference("language", newLanguage, String.class);
+
+            Stage stage = (Stage) changeConfigurationButton.getScene().getWindow();
+            Scene scene = RunApp.getScene( "MainWindow");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
+            e.printStackTrace();
+        }
+    }
 
     public void onGenomeDestButtonPressed(ActionEvent actionEvent) {
         System.out.println("genome dest");
         try {
-            String path = GuiHandler.getInstance().chooseFilePath(formatsFa);
-            genomeDestTextField.setText(path);
+            genomeDestTextField.setText(GuiHandler.getInstance().chooseFilePath(formatsFa));
             prepareGenomeCheckBox.setDisable(false);
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
             GuiHandler.getInstance().showWindow(e.toString());
@@ -129,8 +168,7 @@ public class MainWindowController implements Initializable {
     public void onAnalysisDestButtonPressed(ActionEvent actionEvent) {
         System.out.println("analysis dest");
         try {
-            String path = GuiHandler.getInstance().chooseDirectoryPath();
-            analysisDestTextField.setText(path);
+            analysisDestTextField.setText(GuiHandler.getInstance().chooseDirectoryPath());
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
             GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
@@ -140,8 +178,7 @@ public class MainWindowController implements Initializable {
     public void onTumorForwardButtonPressed(ActionEvent actionEvent) {
         System.out.println("tumor fwd");
         try {
-            String path = GuiHandler.getInstance().chooseFilePath(formatsFq);
-            tumorForwardTextField.setText(path);
+            tumorForwardTextField.setText(GuiHandler.getInstance().chooseFilePath(formatsFq));
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
             GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
@@ -151,8 +188,7 @@ public class MainWindowController implements Initializable {
     public void onTumorReverseButtonPressed(ActionEvent actionEvent) {
         System.out.println("tumor rev");
         try {
-            String path = GuiHandler.getInstance().chooseFilePath(formatsFq);
-            tumorReverseTextField.setText(path);
+            tumorReverseTextField.setText(GuiHandler.getInstance().chooseFilePath(formatsFq));
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
             GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
@@ -162,8 +198,7 @@ public class MainWindowController implements Initializable {
     public void onNormalForwardButtonPressed(ActionEvent actionEvent) {
         System.out.println("normal fwd");
         try {
-            String path = GuiHandler.getInstance().chooseFilePath(formatsFq);
-            normalForwardTextField.setText(path);
+            normalForwardTextField.setText(GuiHandler.getInstance().chooseFilePath(formatsFq));
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
             GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
@@ -173,8 +208,7 @@ public class MainWindowController implements Initializable {
     public void onNormalReverseButtonPressed(ActionEvent actionEvent) {
         System.out.println("normal rev");
         try {
-            String path = GuiHandler.getInstance().chooseFilePath(formatsFq);
-            normalReverseTextField.setText(path);
+            normalReverseTextField.setText(GuiHandler.getInstance().chooseFilePath(formatsFq));
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
             GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();

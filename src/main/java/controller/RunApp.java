@@ -28,7 +28,7 @@ public class RunApp extends Application {
         primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("application", "version"));
 //        Boolean firstUsage = Boolean.parseBoolean(tools.PropertiesGetter.getValue("firstUsage"));
         Boolean firstUsage = PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class);
-        setDefaultRulesPaths();
+        setDefaultPaths();
         String name = firstUsage ? "Configuration" : "MainWindow";
         Scene scene = getScene(name);
         primaryStage.setScene(scene);
@@ -53,9 +53,14 @@ public class RunApp extends Application {
         return scene;
     }
 
-    public void setDefaultRulesPaths() throws PreferencesManager.UnsupportedTypeException, URISyntaxException {
-        URL resource = RunApp.class.getClassLoader().getResource("config_example.yaml");
+    public void setDefaultPaths() throws PreferencesManager.UnsupportedTypeException, URISyntaxException {
+        URL resource = RunApp.class.getClassLoader().getResource("rules/annotate.smk");
         File file = Paths.get(resource.toURI()).toFile();
+        String resourcesPath = file.getParent();
+        PreferencesManager.getInstance().setPreference("resources_path", resourcesPath, String.class);
+
+        resource = RunApp.class.getClassLoader().getResource("config_example.yaml");
+        file = Paths.get(resource.toURI()).toFile();
         String rulesPath = file.getParent();
         PreferencesManager.getInstance().setPreference("rules_path", rulesPath, String.class);
     }

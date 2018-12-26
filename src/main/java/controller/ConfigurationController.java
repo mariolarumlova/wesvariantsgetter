@@ -37,6 +37,7 @@ public class ConfigurationController implements Initializable {
     public void onInstallButtonPressed(ActionEvent actionEvent) {
         try {
             //TODO: Odpalanie skryptu instalacyjnego
+            PreferencesManager.getInstance().setPreference("script_name", "installing.sh", String.class);
             Stage stage = (Stage) firstUsageInstallButton.getScene().getWindow();
             Scene scene = RunApp.getScene( "Progress");
             stage.setScene(scene);

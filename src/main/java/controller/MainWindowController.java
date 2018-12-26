@@ -220,8 +220,10 @@ public class MainWindowController implements Initializable {
         try {
             Config config = makeConfigFile();
             if (config != null) {
+                    PreferencesManager.getInstance().setPreference("analysis_path", analysisDestTextField.getText(), String.class);
                     writeConfigFileAndCopySnakeFileToAnalysisFolder(config);
                     //TODO: Odpalanie skryptu uruchamiającego analizę
+                    PreferencesManager.getInstance().setPreference("script_name", "analyse.sh", String.class);
                     Stage stage = (Stage) analyseButton.getScene().getWindow();
                     Scene scene = RunApp.getScene( "Progress");
                     stage.setScene(scene);

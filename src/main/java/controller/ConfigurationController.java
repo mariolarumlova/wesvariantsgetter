@@ -11,11 +11,14 @@ import javafx.stage.Stage;
 import tools.GuiHandler;
 import tools.PreferencesManager;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ConfigurationController implements Initializable {
 
+    @FXML
+    Button languageButton;
     @FXML
     Button firstUsageInstallButton;
     @FXML
@@ -27,6 +30,8 @@ public class ConfigurationController implements Initializable {
         firstUsageInstallButton.setGraphic(new ImageView(imageInstall));
         Image imageBrowse = new Image(getClass().getResourceAsStream("/images/browse.png"));
         firstUsageSetupButton.setGraphic(new ImageView(imageBrowse));
+        Image imageLanguage = new Image(getClass().getResourceAsStream("/images/language.png"));
+        languageButton.setGraphic(new ImageView(imageLanguage));
     }
 
     public void onInstallButtonPressed(ActionEvent actionEvent) {
@@ -56,4 +61,19 @@ public class ConfigurationController implements Initializable {
     }
 
 
+    public void onLanguageButtonPressed(ActionEvent actionEvent) {
+        try {
+            String oldLanguage = PreferencesManager.getInstance().getPreference("language", String.class);
+            String newLanguage = oldLanguage.equals("pl") ? "en" : "pl";
+            PreferencesManager.getInstance().setPreference("language", newLanguage, String.class);
+
+            Stage stage = (Stage) languageButton.getScene().getWindow();
+            Scene scene = RunApp.getScene( "Configuration");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
+            e.printStackTrace();
+        }
+    }
 }

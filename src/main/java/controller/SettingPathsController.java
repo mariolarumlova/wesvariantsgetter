@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tools.GuiHandler;
 import tools.PreferencesManager;
@@ -29,10 +31,17 @@ public class SettingPathsController implements Initializable {
     Button programsPathButton;
     @FXML
     Button saveButton;
+    @FXML
+    Button languageButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            Image imageLanguage = new Image(getClass().getResourceAsStream("/images/language.png"));
+            languageButton.setGraphic(new ImageView(imageLanguage));
+            Image imageAccept = new Image(getClass().getResourceAsStream("/images/ok.png"));
+            saveButton.setGraphic(new ImageView(imageAccept));
+
             minicondaPathTextField.setText(PreferencesManager.getInstance().getPreference("miniconda3", String.class));
             programsPathTextField.setText(PreferencesManager.getInstance().getPreference("programs_path", String.class));
             envNameTextField.setText(PreferencesManager.getInstance().getPreference("env_name", String.class));
@@ -75,6 +84,22 @@ public class SettingPathsController implements Initializable {
                 stage.show();
             } else throw new IncorrectEnvironmentNameException();
         } catch (Exception | PreferencesManager.IncorrectKeyException | IncorrectEnvironmentNameException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
+            e.printStackTrace();
+        }
+    }
+
+    public void onLanguageButtonPressed(ActionEvent actionEvent) {
+        try {
+            String oldLanguage = PreferencesManager.getInstance().getPreference("language", String.class);
+            String newLanguage = oldLanguage.equals("pl") ? "en" : "pl";
+            PreferencesManager.getInstance().setPreference("language", newLanguage, String.class);
+
+            Stage stage = (Stage) languageButton.getScene().getWindow();
+            Scene scene = RunApp.getScene( "SettingPaths");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
             GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }

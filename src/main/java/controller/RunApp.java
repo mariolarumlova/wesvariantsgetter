@@ -9,7 +9,11 @@ import tools.GuiHandler;
 import tools.PreferencesManager;
 import tools.PropertiesGetter;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class RunApp extends Application {
@@ -24,12 +28,13 @@ public class RunApp extends Application {
         primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("application", "version"));
 //        Boolean firstUsage = Boolean.parseBoolean(tools.PropertiesGetter.getValue("firstUsage"));
         Boolean firstUsage = PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class);
+        setDefaultRulesPaths();
         String name = firstUsage ? "Configuration" : "MainWindow";
         Scene scene = getScene(name);
         primaryStage.setScene(scene);
         primaryStage.show();
-        } catch (IOException | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
-            GuiHandler.getInstance().showWindow(e.getMessage());
+        } catch (Exception | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
         }
     }
 
@@ -46,5 +51,12 @@ public class RunApp extends Application {
         scene.getStylesheets().add(RunApp.class.getClassLoader().getResource("\\bootstrap3.css").toExternalForm());
 
         return scene;
+    }
+
+    public void setDefaultRulesPaths() throws PreferencesManager.UnsupportedTypeException, URISyntaxException {
+        URL resource = RunApp.class.getClassLoader().getResource("config_example.yaml");
+        File file = Paths.get(resource.toURI()).toFile();
+        String rulesPath = file.getParent();
+        PreferencesManager.getInstance().setPreference("rules_path", rulesPath, String.class);
     }
 }

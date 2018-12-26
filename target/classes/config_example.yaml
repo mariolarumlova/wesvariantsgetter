@@ -1,8 +1,6 @@
 samples:
 #IDs of samples put in "samples" directory
-      ids: ["SRR7501654", "SRR7501665"]
-#suffix to paired-end samples IDs
-      suffix: "_"
+      ids: ["SRR7501654_", "SRR7501665_"]
 #path to samples
       path: "fastq/"
 #samples extension

@@ -302,7 +302,6 @@ public class MainWindowController implements Initializable {
     }
 
     public Map<String, Object> parseRulesSettings() throws NumberFormatException, PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
-        Map<String, Object> out = null;
         Integer minPhredScore = Integer.parseInt(minPhredScoreTextField.getText().replaceAll(" ", ""));
         int selectedStartPoint = startPointComboBox.getSelectionModel().getSelectedIndex();
         boolean removingAdapters, qualityFiltering;
@@ -328,18 +327,7 @@ public class MainWindowController implements Initializable {
         String mapper = mapperComboBox.getSelectionModel().getSelectedItem().toString().toLowerCase();
         String variantCaller = variantCallerComboBox.getSelectionModel().getSelectedItem().toString().toLowerCase();
 
-        out = new HashMap<>();
-        out.put("path", PreferencesManager.getInstance().getPreference("rules_path", String.class));
-        out.put("prepare_genome", prepareGenomeCheckBox.isSelected());
-        out.put("removing_adapters", removingAdapters);
-        out.put("quality_filtering", qualityFiltering);
-        out.put("min_phred_score", minPhredScore);
-        out.put("mapper", mapper);
-        out.put("remove_duplicates", removeDuplicatesCheckBox.isSelected());
-        out.put("variant_caller", variantCaller);
-        out.put("annotate", annotate);
-
-        return out;
+        return getRulesSettingsMap(removingAdapters, qualityFiltering, minPhredScore, mapper, variantCaller, annotate);
     }
 
     private boolean allPathsSelected() {
@@ -438,6 +426,29 @@ public class MainWindowController implements Initializable {
                 normalForwardId.equals(normalReverseId);
 
         return pairsMatch ? new String[]{tumorForwardId, normalForwardId} : null;
+    }
+
+    private Map<String, Object> getRulesSettingsMap(Boolean removingAdapters, Boolean qualityFiltering, Integer minPhredScore,
+                                                    String mapper, String variantCaller, Boolean annotate) throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+        Map<String, Object> out = new HashMap<>();
+        out.put("path", PreferencesManager.getInstance().getPreference("rules_path", String.class));
+        out.put("prepare_genome", prepareGenomeCheckBox.isSelected());
+        PreferencesManager.getInstance().setPreference("prepare_genome", prepareGenomeCheckBox.isSelected(), Boolean.class);
+        out.put("removing_adapters", removingAdapters);
+        PreferencesManager.getInstance().setPreference("removing_adapters", removingAdapters, Boolean.class);
+        out.put("quality_filtering", qualityFiltering);
+        PreferencesManager.getInstance().setPreference("quality_filtering", qualityFiltering, Boolean.class);
+        out.put("min_phred_score", minPhredScore);
+        PreferencesManager.getInstance().setPreference("min_phred_score", minPhredScore, Integer.class);
+        out.put("mapper", mapper);
+        PreferencesManager.getInstance().setPreference("mapper", mapper, String.class);
+        out.put("remove_duplicates", removeDuplicatesCheckBox.isSelected());
+        PreferencesManager.getInstance().setPreference("remove_duplicates", removeDuplicatesCheckBox.isSelected(), Boolean.class);
+        out.put("variant_caller", variantCaller);
+        PreferencesManager.getInstance().setPreference("variant_caller", variantCaller, String.class);
+        out.put("annotate", annotate);
+        PreferencesManager.getInstance().setPreference("annotate", annotate, Boolean.class);
+        return out;
     }
 
 

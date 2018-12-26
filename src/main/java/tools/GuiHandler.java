@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -81,6 +82,22 @@ public class GuiHandler {
         }
         fileChooser.getExtensionFilters().addAll(extFilters);
         File file = fileChooser.showOpenDialog(chooseSource);
+        if (file != null) {
+            return file.getAbsolutePath();
+        } else {
+            showWindow(PropertiesGetter.getValue(propFileName, "chooseDirectoryError"));
+            return "";
+        }
+    }
+
+    public String chooseDirectoryPath() throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+        String propFileName = "labels_" + PreferencesManager.getInstance().getPreference("language", String.class);
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        Stage stage = new Stage();
+        directoryChooser.setTitle(PropertiesGetter.getValue(propFileName, "chooseDirectoryLabel"));
+        directoryChooser.setInitialDirectory(new File(PreferencesManager.getInstance().getPreference("analysis_path", String.class)));
+        File file = directoryChooser.showDialog(stage);
+
         if (file != null) {
             return file.getAbsolutePath();
         } else {

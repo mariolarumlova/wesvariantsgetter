@@ -114,6 +114,13 @@ public class MainWindowController implements Initializable {
 
     public void onAnalysisDestButtonPressed(ActionEvent actionEvent) {
         System.out.println("analysis dest");
+        try {
+            String path = GuiHandler.getInstance().chooseDirectoryPath();
+            analysisDestTextField.setText(path);
+        } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
+            e.printStackTrace();
+        }
     }
 
     public void onTumorForwardButtonPressed(ActionEvent actionEvent) {
@@ -166,7 +173,7 @@ public class MainWindowController implements Initializable {
             Config config = makeConfigFile();
             if (config != null) {
                     YamlParser.write(config, PreferencesManager.getInstance().getPreference("analysis_path", String.class) + "testConfig.yaml");
-                    //TODO: Kopiowanie Snakefile do analysis_path, może być w metodzie write
+                    //TODO: Kopiowanie Snakefile do analysis_path, może być w metodzie write w YamlParserze
                     Stage stage = (Stage) analyseButton.getScene().getWindow();
                     Scene scene = RunApp.getScene( "AnalysisProgress");
                     stage.setScene(scene);
@@ -193,7 +200,77 @@ public class MainWindowController implements Initializable {
     public Map<String, Object> parseSamplePaths() {
         Map<String, Object> out = null;
 
+        boolean allPathsSelected = tumorForwardTextField.getText() != null &&
+                tumorReverseTextField.getText() != null &&
+                normalForwardTextField.getText() != null &&
+                normalReverseTextField.getText() != null;
+        System.out.println("all selected " + allPathsSelected);
+        if (allPathsSelected) {
+            String tumorForwardWhole = tumorForwardTextField.getText();
+            String[] tumorForwardArray = tumorForwardWhole.split("\\.");
+            String tumorForwardPath = tumorForwardArray[tumorForwardArray.length-2];
+            String tumorForwardExt = "." + tumorForwardArray[tumorForwardArray.length-1];
 
+            String tumorReverseWhole = tumorReverseTextField.getText();
+            String[] tumorReverseArray = tumorReverseWhole.split("\\.");
+            String tumorReversePath = tumorReverseArray[tumorReverseArray.length-2];
+            String tumorReverseExt = "." + tumorReverseArray[tumorReverseArray.length-1];
+
+            String normalForwardWhole = normalForwardTextField.getText();
+            String[] normalForwardArray = normalForwardWhole.split("\\.");
+            String normalForwardPath = normalForwardArray[normalForwardArray.length-2];
+            String normalForwardExt = "." + normalForwardArray[normalForwardArray.length-1];
+
+            String normalReverseWhole = normalReverseTextField.getText();
+            String[] normalReverseArray = normalReverseWhole.split("\\.");
+            String normalReversePath = normalReverseArray[normalReverseArray.length-2];
+            String normalReverseExt = "." + normalReverseArray[normalReverseArray.length-1];
+
+            boolean equalExtensions = tumorForwardExt.equals(tumorReverseExt) &&
+                                        tumorForwardExt.equals(normalForwardExt) &&
+                                        tumorForwardExt.equals(normalReverseExt);
+            System.out.println("equal ext " + equalExtensions);
+            if (equalExtensions) {
+                tumorForwardArray = tumorForwardWhole.split("\\\\|/|\\.");
+                tumorReverseArray = tumorReverseWhole.split("\\\\|/|\\.");
+                normalForwardArray = normalForwardWhole.split("\\\\|/|\\.");
+                normalReverseArray = normalReverseWhole.split("\\\\|/|\\.");
+
+                // usuwanie 1 i 2 z nazw
+                int indexTemp = tumorForwardArray.length - 1;
+                String lastElementTemp = tumorForwardArray[indexTemp];
+                int index = lastElementTemp.length() - 1;
+                tumorForwardArray[indexTemp - 1] = lastElementTemp.substring(0, index);
+                String tumorForwardSimplifiedPath = Arrays.toString(tumorForwardArray);
+
+                indexTemp = tumorReverseArray.length - 1;
+                lastElementTemp = tumorReverseArray[indexTemp];
+                tumorReverseArray[indexTemp - 1] = lastElementTemp.substring(0, index);
+                String tumorReverseSimplifiedPath = Arrays.toString(tumorForwardArray);
+
+                indexTemp = normalForwardArray.length - 1;
+                lastElementTemp = normalForwardArray[indexTemp];
+                normalForwardArray[indexTemp - 1] = lastElementTemp.substring(0, index);
+                String normalForwardSimplifiedPath = Arrays.toString(tumorForwardArray);
+
+
+                indexTemp = normalReverseArray.length - 1;
+                lastElementTemp = normalReverseArray[indexTemp];
+                normalReverseArray[indexTemp - 1] = lastElementTemp.substring(0, index);
+                String normalReverseSimplifiedPath = Arrays.toString(tumorForwardArray);
+
+                boolean pairsMatch = tumorForwardSimplifiedPath.equals(tumorReverseSimplifiedPath) &&
+                                normalForwardSimplifiedPath.equals(normalReverseSimplifiedPath);
+                System.out.println("pairs match " + pairsMatch);
+
+                if (pairsMatch) {
+                    out = new HashMap<>();
+                    out.put("ext", tumorForwardExt);
+
+                }
+            }
+
+        }
 
         return out;
     }

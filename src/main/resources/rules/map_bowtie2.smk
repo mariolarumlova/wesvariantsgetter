@@ -7,8 +7,8 @@ else:
 
 rule bowtie2_map:
     input:
-        fq1=INPUT_DEST + "/{sample}_1.fastq",
-        fq2=INPUT_DEST + "/{sample}_2.fastq"
+        fq1=INPUT_DEST + "/{sample}1.fastq",
+        fq2=INPUT_DEST + "/{sample}2.fastq"
     output:
         "mapped_reads/{sample}.bam"
     shell:

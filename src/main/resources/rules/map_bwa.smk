@@ -8,8 +8,8 @@ else:
 rule bwa_map:
     input:
         GENOME,
-        fq1=INPUT_DEST + "/{sample}" + config["samples"]["suffix"] + "1" + config["samples"]["ext"],
-        fq2=INPUT_DEST + "/{sample}" + config["samples"]["suffix"] + "2" + config["samples"]["ext"]
+        fq1=INPUT_DEST + "/{sample}1" + config["samples"]["ext"],
+        fq2=INPUT_DEST + "/{sample}2" + config["samples"]["ext"]
     output:
         "mapped_reads/{sample}.bam"
     shell:

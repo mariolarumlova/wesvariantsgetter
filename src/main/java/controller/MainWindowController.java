@@ -205,7 +205,7 @@ public class MainWindowController implements Initializable {
                 normalForwardTextField.getText() != null &&
                 normalReverseTextField.getText() != null;
         System.out.println("all selected " + allPathsSelected);
-        if (allPathsSelected) {
+        if (allPathsSelected()) {
             String tumorForwardWhole = tumorForwardTextField.getText();
             String[] tumorForwardArray = tumorForwardWhole.split("\\.");
             String tumorForwardPath = tumorForwardArray[tumorForwardArray.length-2];
@@ -334,5 +334,12 @@ public class MainWindowController implements Initializable {
         out.put("annotate", annotate);
 
         return out;
+    }
+
+    public boolean allPathsSelected() {
+        return tumorForwardTextField.getText() != null &&
+                tumorReverseTextField.getText() != null &&
+                normalForwardTextField.getText() != null &&
+                normalReverseTextField.getText() != null;
     }
 }

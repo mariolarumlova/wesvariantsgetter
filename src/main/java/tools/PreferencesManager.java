@@ -82,8 +82,26 @@ public final class PreferencesManager {
 //    }
 
     public class UnsupportedTypeException extends Throwable {
+//        @Override
+//        public String toString() {
+//            try {
+//                String propFileName = "labels_" + PropertiesGetter.getValue("application", "language");
+//                return PropertiesGetter.getValue(propFileName, "unsupportedTypeException");
+//            } catch (IOException e) {
+//                return "UnsupportedTypeException{}";
+//            }
+//        }
     }
 
     public class IncorrectKeyException extends Throwable {
+//        @Override
+//        public String toString() {
+//            try {
+//                String propFileName = "labels_" + PropertiesGetter.getValue("application", "language");
+//                return PropertiesGetter.getValue(propFileName, "incorrectKeyException");
+//            } catch (IOException e) {
+//                return "IncorrectKeyException{}";
+//            }
+//        }
     }
 }

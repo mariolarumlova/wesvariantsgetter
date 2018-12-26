@@ -81,10 +81,15 @@ public class MainWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             propFileName = "labels_" + PreferencesManager.getInstance().getPreference("language", String.class);
+
             GuiHandler.getInstance().setComboBox(startPointComboBox, "startPointComboBox");
+            setDefaultValueStartPointComboBox();
             GuiHandler.getInstance().setComboBox(endPointComboBox, "endPointComboBox");
+            setDefaultValueEndPointComboBox();
             GuiHandler.getInstance().setComboBox(mapperComboBox, "mapperComboBox");
+            setDefaultValueMapperComboBox();
             GuiHandler.getInstance().setComboBox(variantCallerComboBox, "variantCallerComboBox");
+            setDefaultValueVariantCallerComboBox();
 
             analysisDestTextField.setText(PreferencesManager.getInstance().getPreference("analysis_path", String.class));
             genomeDestTextField.setText(PreferencesManager.getInstance().getPreference("genome_path", String.class));
@@ -195,6 +200,53 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    private void setDefaultValueStartPointComboBox() throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+        boolean removingAdapters = PreferencesManager.getInstance().getPreference("removing_adapters", Boolean.class);
+        boolean qualityFiltering = PreferencesManager.getInstance().getPreference("quality_filtering", Boolean.class);
+        if (removingAdapters) {
+            startPointComboBox.getSelectionModel().select(0);
+        } else if (qualityFiltering) {
+            startPointComboBox.getSelectionModel().select(1);
+        } else {
+            startPointComboBox.getSelectionModel().select(2);
+        }
+    }
+
+    private void setDefaultValueEndPointComboBox() throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+        boolean annotate = PreferencesManager.getInstance().getPreference("annotate", Boolean.class);
+        if (annotate) {
+            endPointComboBox.getSelectionModel().select(1);
+        } else {
+            endPointComboBox.getSelectionModel().select(0);
+        }
+    }
+
+    private void setDefaultValueMapperComboBox() throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+        String mapper = PreferencesManager.getInstance().getPreference("mapper", String.class);
+        List<String> options = Arrays.asList(PropertiesGetter.getValue(propFileName, "mapperComboBox").split("#"));
+        if (mapper != null && options != null) {
+            for (String option : options) {
+                if (mapper.equalsIgnoreCase(option)) {
+                    mapperComboBox.getSelectionModel().select(option);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void setDefaultValueVariantCallerComboBox() throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+        String variantCaller = PreferencesManager.getInstance().getPreference("variant_caller", String.class);
+        List<String> options = Arrays.asList(PropertiesGetter.getValue(propFileName, "variantCallerComboBox").split("#"));
+        if (variantCaller != null && options != null) {
+            for (String option : options) {
+                if (variantCaller.equalsIgnoreCase(option)) {
+                    variantCallerComboBox.getSelectionModel().select(option);
+                    break;
+                }
+            }
+        }
+    }
+
     public Config makeConfigFile() throws IOException, PreferencesManager.IncorrectKeyException, PreferencesManager.UnsupportedTypeException, IncorrectPathException {
         Map<String, Object> samples = parseSamplePaths();
         Map<String, Object> genome = parseGenomePath();
@@ -228,12 +280,13 @@ public class MainWindowController implements Initializable {
         return out;
     }
 
-    public Map<String, Object> parseGenomePath() {
+    public Map<String, Object> parseGenomePath() throws IncorrectPathException {
         Map<String, Object> out = null;
 
         if (genomeDestTextField.getText() != null) {
             String genomeWhole = genomeDestTextField.getText();
             String[] genomeArray = genomeWhole.split("\\.");
+            if (genomeArray.length<2) throw new IncorrectPathException();
             String path = genomeArray[genomeArray.length-2];
             String ext = "." + genomeArray[genomeArray.length-1];
             genomeArray = genomeWhole.split("\\\\|/|\\.");
@@ -347,7 +400,7 @@ public class MainWindowController implements Initializable {
                     tumorForwardPath.equals(normalForwardPath) &&
                     tumorForwardPath.equals(normalReversePath);
 
-            return equalPaths ? tumorForwardPath+delimiter : null;
+            return equalPaths ? tumorForwardPath : null;
         }
     }
 
@@ -390,7 +443,7 @@ public class MainWindowController implements Initializable {
 
     private void writeConfigFileAndCopySnakeFileToAnalysisFolder(Config config) throws IOException, PreferencesManager.UnsupportedTypeException, PreferencesManager.IncorrectKeyException, URISyntaxException {
         String analysisPath = PreferencesManager.getInstance().getPreference("analysis_path", String.class);
-        YamlParser.write(config, analysisPath + "testConfig.yaml");
+        YamlParser.write(config, analysisPath + "config.yaml");
         URL resource = MainWindowController.class.getClassLoader().getResource("Snakefile");
         File source = Paths.get(resource.toURI()).toFile();
         File dest = new File(analysisPath + "Snakefile");
@@ -398,5 +451,13 @@ public class MainWindowController implements Initializable {
     }
 
     private class IncorrectPathException extends Throwable {
+        @Override
+        public String toString() {
+            try {
+                return PropertiesGetter.getValue(propFileName, "incorrectPathException");
+            } catch (IOException e) {
+                return "IncorrectPathException()";
+            }
+        }
     }
 }

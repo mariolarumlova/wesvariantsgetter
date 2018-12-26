@@ -58,6 +58,8 @@ public class GuiHandler {
 
     public void showWindow(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
+        alert.setTitle("");
+        alert.setHeaderText("");
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.showAndWait();
     }

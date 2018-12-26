@@ -23,13 +23,16 @@ public class Config {
         Map<String, Object> env = new HashMap<>();
         env.put("name", PreferencesManager.getInstance().getPreference("env_name", String.class));
         this.env = env;
+
+        Map<String, Object> programs = new HashMap<>();
+        programs.put("name", PreferencesManager.getInstance().getPreference("programs_path", String.class));
+        this.programs = programs;
     }
 
-    public Config(Map<String, Object> samples, Map<String, Object> genome, Map<String, Object> programs, Map<String, Object> rules) throws IOException, PreferencesManager.IncorrectKeyException, PreferencesManager.UnsupportedTypeException {
+    public Config(Map<String, Object> samples, Map<String, Object> genome, Map<String, Object> rules) throws IOException, PreferencesManager.IncorrectKeyException, PreferencesManager.UnsupportedTypeException {
         this();
         this.samples = samples;
         this.genome = genome;
-        this.programs = programs;
         this.rules = rules;
     }
 

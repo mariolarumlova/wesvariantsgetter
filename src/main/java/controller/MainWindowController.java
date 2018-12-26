@@ -17,9 +17,7 @@ import tools.YamlParser;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainWindowController implements Initializable {
 
@@ -96,8 +94,8 @@ public class MainWindowController implements Initializable {
             formatsFq.add("fq");
 
         } catch (IOException | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
-            GuiHandler.getInstance().showWindow(e.getMessage());
         }
     }
 
@@ -109,6 +107,7 @@ public class MainWindowController implements Initializable {
             genomeDestTextField.setText(path);
             prepareGenomeCheckBox.setDisable(false);
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }
     }
@@ -123,6 +122,7 @@ public class MainWindowController implements Initializable {
             String path = GuiHandler.getInstance().chooseFilePath(formatsFq);
             tumorForwardTextField.setText(path);
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }
     }
@@ -133,6 +133,7 @@ public class MainWindowController implements Initializable {
             String path = GuiHandler.getInstance().chooseFilePath(formatsFq);
             tumorReverseTextField.setText(path);
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }
     }
@@ -143,6 +144,7 @@ public class MainWindowController implements Initializable {
             String path = GuiHandler.getInstance().chooseFilePath(formatsFq);
             normalForwardTextField.setText(path);
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }
     }
@@ -153,6 +155,7 @@ public class MainWindowController implements Initializable {
             String path = GuiHandler.getInstance().chooseFilePath(formatsFq);
             normalReverseTextField.setText(path);
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }
     }
@@ -171,15 +174,88 @@ public class MainWindowController implements Initializable {
             } else {
                 GuiHandler.getInstance().showWindow(PropertiesGetter.getValue(propFileName, "configMakingError"));
             }
-        } catch (IOException | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
-            GuiHandler.getInstance().showWindow(e.getMessage());
+        } catch (Exception | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
+            GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
         }
     }
 
     public Config makeConfigFile() throws IOException, PreferencesManager.IncorrectKeyException, PreferencesManager.UnsupportedTypeException {
-        Config config = new Config();
-        //TODO: Walidacja pól i utworzenie obiektu
-        return config;
+        Map<String, Object> samples = parseSamplePaths();
+        Map<String, Object> genome = parseGenomePath();
+        Map<String, Object> rules = parseRulesSettings();
+        if (samples!=null && genome!=null && rules!=null)
+            return new Config(samples, genome, rules);
+        else
+            return null;
+    }
+
+    public Map<String, Object> parseSamplePaths() {
+        Map<String, Object> out = null;
+
+
+
+        return out;
+    }
+
+    public Map<String, Object> parseGenomePath() {
+        Map<String, Object> out = null;
+
+        if (genomeDestTextField.getText() != null) {
+            String genomeWhole = genomeDestTextField.getText();
+            String[] genomeArray = genomeWhole.split("\\.");
+            String path = genomeArray[genomeArray.length-2];
+            String ext = "." + genomeArray[genomeArray.length-1];
+            genomeArray = genomeWhole.split("\\\\|/|\\.");
+            String id = genomeArray[genomeArray.length-2];
+
+            out = new HashMap<>();
+            out.put("id", id);
+            out.put("ext", ext);
+            out.put("path", path);
+        }
+
+        return out;
+    }
+
+    public Map<String, Object> parseRulesSettings() throws NumberFormatException, PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+        Map<String, Object> out = null;
+        Integer minPhredScore = Integer.parseInt(minPhredScoreTextField.getText().replaceAll(" ", ""));
+        int selectedStartPoint = startPointComboBox.getSelectionModel().getSelectedIndex();
+        boolean removingAdapters, qualityFiltering;
+        switch (selectedStartPoint)  {
+            case 0:  removingAdapters = true;
+                qualityFiltering = true;
+                break;
+            case 1:  removingAdapters = false;
+                qualityFiltering = true;
+                break;
+            default: removingAdapters = false;
+                qualityFiltering = false;
+                break;
+        }
+        int selectedEndPoint = endPointComboBox.getSelectionModel().getSelectedIndex();
+        boolean annotate;
+        switch (selectedEndPoint)  {
+            case 0:  annotate = false;
+                break;
+            default: annotate = true;
+                break;
+        }
+        String mapper = mapperComboBox.getSelectionModel().getSelectedItem().toString().toLowerCase();
+        String variantCaller = variantCallerComboBox.getSelectionModel().getSelectedItem().toString().toLowerCase();
+
+        out = new HashMap<>();
+        out.put("path", PreferencesManager.getInstance().getPreference("rules_path", String.class));
+        out.put("prepare_genome", prepareGenomeCheckBox.isSelected());
+        out.put("removing_adapters", removingAdapters);
+        out.put("quality_filtering", qualityFiltering);
+        out.put("min_phred_score", minPhredScore);
+        out.put("mapper", mapper);
+        out.put("remove_duplicates", removeDuplicatesCheckBox.isSelected());
+        out.put("variant_caller", variantCaller);
+        out.put("annotate", annotate);
+
+        return out;
     }
 }

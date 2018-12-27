@@ -491,9 +491,8 @@ public class MainWindowController implements Initializable {
 
     private void writeConfigFileAndCopySnakeFileToAnalysisFolder(Config config) throws IOException, PreferencesManager.UnsupportedTypeException, PreferencesManager.IncorrectKeyException, URISyntaxException {
         String analysisPath = PreferencesManager.getInstance().getPreference("analysis_path", String.class);
-        YamlParser.write(config, analysisPath + "config.yaml");
-        URL resource = MainWindowController.class.getClassLoader().getResource("Snakefile");
-        File source = Paths.get(resource.toURI()).toFile();
+        //YamlParser.write(config, analysisPath + "config.yaml");
+        File source = new File(PreferencesManager.getInstance().getPreference("resources_path", String.class) + "Snakefile");
         File dest = new File(analysisPath + "Snakefile");
         FileUtils.copyFile(source, dest);
     }

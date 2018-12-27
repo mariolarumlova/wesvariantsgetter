@@ -28,9 +28,8 @@ public class RunApp extends Application {
     public void start(Stage primaryStage) {
         try {
         primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("application", "version"));
-//        Boolean firstUsage = Boolean.parseBoolean(tools.PropertiesGetter.getValue("firstUsage"));
         Boolean firstUsage = PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class);
-        setDefaultPaths();
+        copyResourcesAndSetDefaultPaths();
         String name = firstUsage ? "Configuration" : "MainWindow";
         Scene scene = getScene(name);
         primaryStage.setScene(scene);
@@ -51,42 +50,34 @@ public class RunApp extends Application {
         loader.setResources(ResourceBundle.getBundle("labels_" + language));
         Parent root = loader.load(RunApp.class.getResourceAsStream("/view/" + name + ".fxml"));
         Scene scene = new Scene(root, sceneWidth, sceneHeight);
-        //scene.getStylesheets().add(RunApp.class.getClassLoader().getResource("\\bootstrap3.css").toExternalForm());
 
         return scene;
     }
 
-    public void setDefaultPaths() throws PreferencesManager.UnsupportedTypeException, Exception {
-        
+    public void copyResourcesAndSetDefaultPaths() throws PreferencesManager.UnsupportedTypeException, Exception {
 
-//        
-//        //metoda ktora skopiuje do mainDir rules i scrips z jara
-
-//        URL resource = RunApp.class.getClassLoader().getResource("rules/annotate.smk");
-//        File file = Paths.get(resource.toURI()).toFile();
-//        String rulesPath = file.getParent();
-        String[] rulesNamesArray = new String[] {"rules/annotate.smk", "rules/call_bcftools.smk", "rules/call_fasd_somatic.smk",
-                "rules/call_snv_sniffer.smk", "rules/map_bowtie2.smk", "rules/map_bwa.smk",
-                "rules/mark_duplicates.smk", "rules/prepare_genome.smk", "rules/quality_filtering.smk",
-                "rules/realign.smk", "rules/remove_adapters.smk", "rules/sort.smk"};
+        String[] rulesNamesArray = new String[] {"annotate.smk", "call_bcftools.smk", "call_fasd_somatic.smk",
+                "call_snv_sniffer.smk", "map_bowtie2.smk", "map_bwa.smk",
+                "mark_duplicates.smk", "prepare_genome.smk", "quality_filtering.smk",
+                "realign.smk", "remove_adapters.smk", "sort.smk"};
         List<String> rulesNames = Arrays.asList(rulesNamesArray);
-        List<String> rulesPaths = new ArrayList<>();
-        //String rulesPath = exportResource("rules/annotate.smk");
+        String rulesPath = "";
         for (String resourceName : rulesNames) {
-            rulesPaths.add(exportResource(resourceName));
+            rulesPath = exportResource(resourceName, "rules");
         }
-        System.out.println("Rules :\n" + rulesPaths.toString());
-        //PreferencesManager.getInstance().setPreference("rules_path", rulesPath, String.class);
-        
-//        resource = RunApp.class.getClassLoader().getResource("/config_example.yaml");
-//        System.out.println(resource.toURI().toString());
-//        file = Paths.get(resource.toURI()).toFile();
-//        String resourcesPath = file.getParent();
+        PreferencesManager.getInstance().setPreference("rules_path", rulesPath, String.class);
 
+        String[] scriptsNamesArray = new String[] {"analyse.sh", "indexing.sh", "installing.sh"};
+        List<String> scriptsNames = Arrays.asList(scriptsNamesArray);
+        String scriptsPath = "";
+        for (String resourceName : scriptsNames) {
+            scriptsPath = exportResource(resourceName, "scripts");
+        }
+        PreferencesManager.getInstance().setPreference("scripts_path", scriptsPath, String.class);
 
-//        String resourcesPath = exportResource("/config_example.yaml");
-//        PreferencesManager.getInstance().setPreference("resources_path", resourcesPath, String.class);
-
+        exportResource("environment.yaml", null);
+        String resourcesPath = exportResource("Snakefile", null);
+        PreferencesManager.getInstance().setPreference("resources_path", resourcesPath, String.class);
 
     }
 
@@ -97,47 +88,40 @@ public class RunApp extends Application {
      * @return The path to the exported resource
      * @throws Exception
      */
-    public String exportResource(String resourceName) throws Exception {
-//        File tmpDir = new File(System.getProperty("tmp.dir"));
-//
-//        File mainDir = new File(tmpDir, "xdir");
-//        mainDir.mkdir();
-//        if (mainDir.exists()) {
-//            if (mainDir.isDirectory()) {
-//
-//            }
-//        }
+    public String exportResource(String resourceName, String subdirectory) throws Exception {
 
+        String delimiter = "/";
         InputStream stream = null;
         OutputStream resStreamOut = null;
         String jarFolder;
         File dir = null;
+        String resourceRelPath = subdirectory!= null ? subdirectory + "/" + resourceName : resourceName;
         try {
-            stream = RunApp.class.getClassLoader().getResourceAsStream(resourceName);//note that each / is a directory down in the "jar tree" been the jar the root of the tree
+            stream = RunApp.class.getClassLoader().getResourceAsStream(resourceRelPath);//note that each / is a directory down in the "jar tree" been the jar the root of the tree
             if(stream == null) {
                 throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
             }
-
             int readBytes;
             byte[] buffer = new byte[4096];
             jarFolder = new File(RunApp.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
-            dir = new File(jarFolder, "\\rules");
-            dir.mkdir();
-            File file = new File(jarFolder + "\\" + resourceName);
+            if (subdirectory != null) {
+                dir = new File(jarFolder, delimiter + subdirectory);
+                dir.mkdir();
+            }
+            File file = new File(jarFolder + delimiter + resourceRelPath);
             file.createNewFile();
-            resStreamOut = new FileOutputStream(jarFolder + "\\" + resourceName, false);
+            resStreamOut = new FileOutputStream(jarFolder + delimiter + resourceRelPath, false);
             while ((readBytes = stream.read(buffer)) > 0) {
                 resStreamOut.write(buffer, 0, readBytes);
             }
         } catch (Exception ex) {
             throw ex;
+        } finally {
+            stream.close();
+            resStreamOut.close();
         }
-//        } finally {
-//            //stream.close();
-//            //resStreamOut.close();
-//        }
 
-        return jarFolder + resourceName;
+        return subdirectory!= null ? jarFolder + delimiter + subdirectory : jarFolder;
     }
 
 }

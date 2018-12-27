@@ -31,7 +31,7 @@ public class ProgressController implements Initializable {
     public void execute() {
         Process p;
         try {
-            String resourcesPath = PreferencesManager.getInstance().getPreference("resources_path", String.class);
+            String resourcesPath = PreferencesManager.getInstance().getPreference("scripts_path", String.class);
             String scriptName = PreferencesManager.getInstance().getPreference("script_name", String.class);
             String path = resourcesPath + scriptName;
             String[] cmd = {"sh", path};

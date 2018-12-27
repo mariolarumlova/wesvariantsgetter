@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/USER/PATHTOGENOMES/genomes/
+cd $1/genomes/
 
 #indexing reference genome in BWA
 bwa index IDX.EXT

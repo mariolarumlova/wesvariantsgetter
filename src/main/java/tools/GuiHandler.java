@@ -102,7 +102,7 @@ public class GuiHandler {
 
         if (file != null) {
             //TODO: Sprawdź, czy w linuxie jest na pewno "/"
-            String delimiter = "\\";
+            String delimiter = "/";
             return file.getAbsolutePath() + delimiter;
         } else {
             showWindow(PropertiesGetter.getValue(propFileName, "chooseDirectoryError"));

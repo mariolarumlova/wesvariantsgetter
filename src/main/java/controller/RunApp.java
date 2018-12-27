@@ -9,16 +9,14 @@ import tools.GuiHandler;
 import tools.PreferencesManager;
 import tools.PropertiesGetter;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.Paths;
 import java.nio.file.spi.FileSystemProvider;
-import java.util.Collections;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class RunApp extends Application {
 
@@ -32,7 +30,7 @@ public class RunApp extends Application {
         primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("application", "version"));
 //        Boolean firstUsage = Boolean.parseBoolean(tools.PropertiesGetter.getValue("firstUsage"));
         Boolean firstUsage = PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class);
-        //setDefaultPaths();
+        setDefaultPaths();
         String name = firstUsage ? "Configuration" : "MainWindow";
         Scene scene = getScene(name);
         primaryStage.setScene(scene);
@@ -58,64 +56,85 @@ public class RunApp extends Application {
         return scene;
     }
 
-    public void setDefaultPaths() throws PreferencesManager.UnsupportedTypeException, URISyntaxException, IOException {
+    public void setDefaultPaths() throws PreferencesManager.UnsupportedTypeException, Exception {
         
-//        File tmpDir = new File(System.getProperty("tmp.dir"));
-//        
-//        File mainDir = new File(tmpDir, "xdir");
-//        mainDir.mkdir();
-//        
-//        mainDir.exists();
-//        mainDir.isDirectory();
+
 //        
 //        //metoda ktora skopiuje do mainDir rules i scrips z jara
 
-//        resource = RunApp.class.getClassLoader().getResource("rules/annotate.smk");
-//        file = Paths.get(resource.toURI()).toFile();
-        File file = getFile("rules/annotate.smk");
-        String rulesPath = file.getParent();
-        PreferencesManager.getInstance().setPreference("rules_path", rulesPath, String.class);
-        
-//        URL resource = RunApp.class.getClassLoader().getResource("config_example.yaml");
-//        System.out.println(resource.toURI().toString());
+//        URL resource = RunApp.class.getClassLoader().getResource("rules/annotate.smk");
 //        File file = Paths.get(resource.toURI()).toFile();
-        file = getFile("config_example.yaml");
-        String resourcesPath = file.getParent();
-        PreferencesManager.getInstance().setPreference("resources_path", resourcesPath, String.class);
-
-
-    }
-    
-    private File getFile(String resourcesFileName) throws URISyntaxException, IOException {
-        URI uri = RunApp.class.getClassLoader().getResource(resourcesFileName).toURI();
-
-        if("jar".equals(uri.getScheme())){
-            for (FileSystemProvider provider: FileSystemProvider.installedProviders()) {
-                if (provider.getScheme().equalsIgnoreCase("jar")) {
-                    try {
-                        provider.getFileSystem(uri);
-                    } catch (FileSystemNotFoundException e) {
-                        // in this case we need to initialize it first:
-                        provider.newFileSystem(uri, Collections.emptyMap());
-                    }
-                }
-            }
+//        String rulesPath = file.getParent();
+        String[] rulesNamesArray = new String[] {"rules/annotate.smk", "rules/call_bcftools.smk", "rules/call_fasd_somatic.smk",
+                "rules/call_snv_sniffer.smk", "rules/map_bowtie2.smk", "rules/map_bwa.smk",
+                "rules/mark_duplicates.smk", "rules/prepare_genome.smk", "rules/quality_filtering.smk",
+                "rules/realign.smk", "rules/remove_adapters.smk", "rules/sort.smk"};
+        List<String> rulesNames = Arrays.asList(rulesNamesArray);
+        List<String> rulesPaths = new ArrayList<>();
+        //String rulesPath = exportResource("rules/annotate.smk");
+        for (String resourceName : rulesNames) {
+            rulesPaths.add(exportResource(resourceName));
         }
-        return Paths.get(uri).toFile();
-//        java.lang.UnsupportedOperationException
-//	at com.sun.nio.zipfs.ZipPath.toFile(ZipPath.java:597)
-//	at controller.RunApp.getFile(RunApp.java:104)
-//	at controller.RunApp.setDefaultPaths(RunApp.java:75)
-//	at controller.RunApp.start(RunApp.java:35)
-//	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$161(LauncherImpl.java:863)
-//	at com.sun.javafx.application.PlatformImpl.lambda$runAndWait$174(PlatformImpl.java:326)
-//	at com.sun.javafx.application.PlatformImpl.lambda$null$172(PlatformImpl.java:295)
-//	at java.security.AccessController.doPrivileged(Native Method)
-//	at com.sun.javafx.application.PlatformImpl.lambda$runLater$173(PlatformImpl.java:294)
-//	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
-//	at com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
-//	at com.sun.glass.ui.gtk.GtkApplication.lambda$null$48(GtkApplication.java:139)
-//	at java.lang.Thread.run(Thread.java:748)
+        System.out.println("Rules :\n" + rulesPaths.toString());
+        //PreferencesManager.getInstance().setPreference("rules_path", rulesPath, String.class);
+        
+//        resource = RunApp.class.getClassLoader().getResource("/config_example.yaml");
+//        System.out.println(resource.toURI().toString());
+//        file = Paths.get(resource.toURI()).toFile();
+//        String resourcesPath = file.getParent();
+
+
+//        String resourcesPath = exportResource("/config_example.yaml");
+//        PreferencesManager.getInstance().setPreference("resources_path", resourcesPath, String.class);
+
 
     }
+
+    /**
+     * Export a resource embedded into a Jar file to the local file path.
+     *
+     * @param resourceName ie.: "/SmartLibrary.dll"
+     * @return The path to the exported resource
+     * @throws Exception
+     */
+    public String exportResource(String resourceName) throws Exception {
+//        File tmpDir = new File(System.getProperty("tmp.dir"));
+//
+//        File mainDir = new File(tmpDir, "xdir");
+//        mainDir.mkdir();
+//        if (mainDir.exists()) {
+//            if (mainDir.isDirectory()) {
+//
+//            }
+//        }
+
+        InputStream stream = null;
+        OutputStream resStreamOut = null;
+        String jarFolder;
+        try {
+            stream = RunApp.class.getClassLoader().getResourceAsStream(resourceName);//note that each / is a directory down in the "jar tree" been the jar the root of the tree
+            if(stream == null) {
+                throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
+            }
+
+            int readBytes;
+            byte[] buffer = new byte[4096];
+            jarFolder = new File(RunApp.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
+            File dir = new File(jarFolder, "\\rules");
+            dir.mkdir();
+            resStreamOut = new FileOutputStream(jarFolder + "\\" + resourceName);
+            while ((readBytes = stream.read(buffer)) > 0) {
+                resStreamOut.write(buffer, 0, readBytes);
+            }
+        } catch (Exception ex) {
+            throw ex;
+        }
+//        } finally {
+//            //stream.close();
+//            //resStreamOut.close();
+//        }
+
+        return jarFolder + resourceName;
+    }
+
 }

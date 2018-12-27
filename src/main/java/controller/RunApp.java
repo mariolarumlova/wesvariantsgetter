@@ -111,6 +111,7 @@ public class RunApp extends Application {
         InputStream stream = null;
         OutputStream resStreamOut = null;
         String jarFolder;
+        File dir = null;
         try {
             stream = RunApp.class.getClassLoader().getResourceAsStream(resourceName);//note that each / is a directory down in the "jar tree" been the jar the root of the tree
             if(stream == null) {
@@ -120,9 +121,11 @@ public class RunApp extends Application {
             int readBytes;
             byte[] buffer = new byte[4096];
             jarFolder = new File(RunApp.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
-            File dir = new File(jarFolder, "\\rules");
+            dir = new File(jarFolder, "\\rules");
             dir.mkdir();
-            resStreamOut = new FileOutputStream(jarFolder + "\\" + resourceName);
+            File file = new File(jarFolder + "\\" + resourceName);
+            file.createNewFile();
+            resStreamOut = new FileOutputStream(jarFolder + "\\" + resourceName, false);
             while ((readBytes = stream.read(buffer)) > 0) {
                 resStreamOut.write(buffer, 0, readBytes);
             }

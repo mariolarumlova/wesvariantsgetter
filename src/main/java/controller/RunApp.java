@@ -28,13 +28,14 @@ public class RunApp extends Application {
         primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("application", "version"));
 //        Boolean firstUsage = Boolean.parseBoolean(tools.PropertiesGetter.getValue("firstUsage"));
         Boolean firstUsage = PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class);
-        setDefaultPaths();
+        //setDefaultPaths();
         String name = firstUsage ? "Configuration" : "MainWindow";
         Scene scene = getScene(name);
         primaryStage.setScene(scene);
         primaryStage.show();
         } catch (Exception | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {
             GuiHandler.getInstance().showWindow(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -48,7 +49,7 @@ public class RunApp extends Application {
         loader.setResources(ResourceBundle.getBundle("labels_" + language));
         Parent root = loader.load(RunApp.class.getResourceAsStream("/view/" + name + ".fxml"));
         Scene scene = new Scene(root, sceneWidth, sceneHeight);
-        scene.getStylesheets().add(RunApp.class.getClassLoader().getResource("\\bootstrap3.css").toExternalForm());
+        //scene.getStylesheets().add(RunApp.class.getClassLoader().getResource("\\bootstrap3.css").toExternalForm());
 
         return scene;
     }

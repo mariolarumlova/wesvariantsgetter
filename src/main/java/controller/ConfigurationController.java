@@ -52,7 +52,7 @@ public class ConfigurationController implements Initializable {
     public void onSetupButtonPressed(ActionEvent actionEvent) {
         try {
             Stage stage = (Stage) firstUsageSetupButton.getScene().getWindow();
-            Scene scene = RunApp.getScene( "SettingPaths");
+            Scene scene = RunApp.getScene( "MainWindow");
             stage.setScene(scene);
             stage.show();
         } catch (Exception | PreferencesManager.UnsupportedTypeException | PreferencesManager.IncorrectKeyException e) {

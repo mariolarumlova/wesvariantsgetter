@@ -31,18 +31,17 @@ public class ProgressController implements Initializable {
     public void execute() {
         Process p;
         try {
-            String resourcesPath = PreferencesManager.getInstance().getPreference("scripts_path", String.class);
-            String scriptName = PreferencesManager.getInstance().getPreference("script_name", String.class);
-            String path = resourcesPath + scriptName;
-            String[] cmd = {"sh", path};
-            p = Runtime.getRuntime().exec(cmd);
-            p.waitFor();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    p.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                textArea.setText(textArea.getText() + "\n" + line);
-            }
+            String[] cmd = getCommand();
+            if (cmd != null) {
+                p = Runtime.getRuntime().exec(cmd);
+                p.waitFor();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(
+                        p.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    textArea.setText(textArea.getText() + "\n" + line);
+                }
+            } else System.out.println("Nie udało się utworzyć komendy");
         } catch (PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException | IOException | InterruptedException e) {
             GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
@@ -62,5 +61,26 @@ public class ProgressController implements Initializable {
                 GuiHandler.getInstance().showWindow(e.toString());
                 e.printStackTrace();
             }
+    }
+    
+    public String[] getCommand() throws PreferencesManager.UnsupportedTypeException, IOException, PreferencesManager.IncorrectKeyException {
+        String resourcesPath = PreferencesManager.getInstance().getPreference("scripts_path", String.class);
+        String minicondaPath = PreferencesManager.getInstance().getPreference("miniconda3", String.class);
+        String environmentName = PreferencesManager.getInstance().getPreference("env_name", String.class);
+        String analysisPath = PreferencesManager.getInstance().getPreference("analysis_path", String.class);
+        
+        String scriptName = PreferencesManager.getInstance().getPreference("script_name", String.class);
+        String path = resourcesPath + scriptName;
+        String[] cmd = null;
+        if ("installing.sh".equals(scriptName)) {
+            cmd = new String[] {"sh", path, resourcesPath, minicondaPath, environmentName};
+        } else if ("analyse.sh".equals(scriptName)) {
+            cmd = new String[] {"sh", path, analysisPath, environmentName};
+            
+        }
+//        } else if ("indexing.sh".equals(scriptName)) {
+//            cmd = new String[] {"sh", path, analysisPath, environmentName};
+//        }
+        return cmd;
     }
 }

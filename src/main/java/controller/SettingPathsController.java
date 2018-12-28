@@ -79,7 +79,7 @@ public class SettingPathsController implements Initializable {
                 PreferencesManager.getInstance().setPreference("programs_path", programsPathTextField.getText(), String.class);
                 PreferencesManager.getInstance().setPreference("firstUsage", false, Boolean.class);
                 Stage stage = (Stage) saveButton.getScene().getWindow();
-                Scene scene = RunApp.getScene( "MainWindow");
+                Scene scene = RunApp.getScene( "Configuration");
                 stage.setScene(scene);
                 stage.show();
             } else throw new IncorrectEnvironmentNameException();

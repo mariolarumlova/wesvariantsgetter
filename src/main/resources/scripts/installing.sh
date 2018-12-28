@@ -1,48 +1,41 @@
 #!/bin/bash
 
-#installing atom
-wget -O atom-amd64.deb http://atom.io/download/deb
-sudo apt install gdebi-core
-sudo gdebi atom-amd64.deb
+#1 path to resources, 2 path to miniconda, 3 environment name
 
-#installing git
-sudo apt update
-sudo apt install git
-
-#installing unzip
-sudo apt-get install unzip
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+bash miniconda.sh -b -p $2miniconda
+export PATH="$2miniconda/bin:$PATH"
+hash -r
+conda config --set always_yes yes --set changeps1 no
+conda update -q conda
+# Useful for debugging any issues with conda
+conda info -a
+conda config --add channels defaults
+conda config --add channels conda-forge
+conda config --add channels bioconda
+conda create -q -n snakemake snakemake>=5.1.2 python=3.6
+conda create -q -n $3
+source activate $3
 
 #installing Miniconda3
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda-3-latest-Linux-x86_64.sh
+#wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+#bash Miniconda-3-latest-Linux-x86_64.sh
 # delete the installer after successful run
-rm Miniconda3-latest-Linux-x86_64.sh
-echo 'export PATH="/home/USER/miniconda3/bin:$PATH"' >> ~/.bashrc
-echo 'export PATH="/home/USER/miniconda3/bin:$PATH"' >> ~/.zshrc
-echo ". /home/USER/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc
+#rm Miniconda3-latest-Linux-x86_64.sh
+#echo 'export PATH="/home/$USER$/miniconda3/bin:$PATH"' >> ~/.bashrc
+#echo 'export PATH="/home/$USER$/miniconda3/bin:$PATH"' >> ~/.zshrc
+#echo ". /home/$USER$/miniconda3/etc/profile.d/conda.sh" >> ~/.bashrc
 
 #installing Snakemake
-conda install -c bioconda -c conda-forge snakemake
+#conda install -c bioconda -c conda-forge snakemake
 
-conda update conda
-conda env create --name ngs --file /PATHTOENVFILE/environment.yaml
+#conda update conda
+#conda env create --name ngs --file $1/environment.yaml
 # activate the environment
-conda activate ngs
+#conda activate ngs
 
-mkdir /home/USER/PATHTOGENOMES/genomes/
-cd /home/USER/PATHTOGENOMES/genomes/
-
-#downloading reference genome hg38
-wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
-gunzip hg38.fa.gz
-
-#downloading reference genome hg19
-wget hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz
-tar -zxvf chromFa.tar.gz
-cat chr*.fa > hg19.fa
-
-mkdir /home/USER/PATHTOPROGRAMS/programs/
-cd /home/USER/PATHTOPROGRAMS/programs/
+mkdir $1/programs/
+cd $1/programs/
 
 wget https://sourceforge.net/projects/snvsniffer/files/latest/download/SNVSniffer-v2.0.4_bin_x86_64.tar.gz
 tar xvzf SNVSniffer-v2.0.4_bin_x86_64.tar.gz

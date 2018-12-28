@@ -129,7 +129,7 @@ public class MainWindowController implements Initializable {
     public void onChangeConfigurationButtonPressed(ActionEvent actionEvent) {
         try {
             Stage stage = (Stage) changeConfigurationButton.getScene().getWindow();
-            Scene scene = RunApp.getScene( "Configuration");
+            Scene scene = RunApp.getScene( "SettingPaths");
             stage.setScene(scene);
             stage.show();
         } catch (IOException | PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException e) {

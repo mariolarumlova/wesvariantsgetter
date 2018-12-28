@@ -1,16 +1,5 @@
 #!/bin/bash
 
-#installing atom
-wget -O atom-amd64.deb http://atom.io/download/deb
-sudo apt install gdebi-core
-sudo gdebi atom-amd64.deb
-
-#installing git
-sudo apt update
-sudo apt install git
-git config --global user.name "Mariola Rumlova"
-git config --global user.email "mariolarumlova@gmail.com"
-
 #installing Miniconda3
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda-3-latest-Linux-x86_64.sh

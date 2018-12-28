@@ -1,2 +1,4 @@
 Manifest-Version: 1.0
-
+Sealed: true
+Class-Path: . commons-io-2.6.jar lib/snakeyaml-1.21.jar
+Main-Class: controller.RunApp

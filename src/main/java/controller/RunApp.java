@@ -121,7 +121,7 @@ public class RunApp extends Application {
             resStreamOut.close();
         }
 
-        return subdirectory!= null ? jarFolder + delimiter + subdirectory : jarFolder;
+        return subdirectory!= null ? jarFolder + delimiter + subdirectory + delimiter : jarFolder + delimiter;
     }
 
 }

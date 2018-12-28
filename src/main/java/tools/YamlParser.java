@@ -46,6 +46,7 @@ public class YamlParser {
         options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 
         Yaml yaml = new Yaml(options);
+        //Yaml yaml = new Yaml();
         return yaml.dump(map);
     }
 

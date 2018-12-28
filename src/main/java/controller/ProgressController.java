@@ -79,7 +79,7 @@ public class ProgressController implements Initializable {
         String path = resourcesPath + scriptName;
         String[] cmd = null;
         if ("installing.sh".equals(scriptName)) {
-            cmd = new String[] {"sh", path, minicondaPath, environmentName, programsPath};
+            cmd = new String[] {"sh", path, minicondaPath, environmentName, resourcesPath, programsPath};
         } else if ("analyse.sh".equals(scriptName)) {
             cmd = new String[] {"sh", path, analysisPath, environmentName};
             

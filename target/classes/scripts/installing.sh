@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#1 path to miniconda, 2 environment name, 3 path to resources
+#1 path to miniconda, 2 environment name, 3 path to resources, 4 path to programs
 
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
 bash miniconda.sh -b -p $1miniconda
@@ -14,8 +14,19 @@ conda config --add channels defaults
 conda config --add channels conda-forge
 conda config --add channels bioconda
 conda create -q -n snakemake snakemake>=5.1.2 python=3.6
-conda create -q -n $2
+#conda create -q -n $2
+conda env create --name 2 --file $3environment.yaml
 source activate $2
+
+mkdir $4
+cd $4
+
+wget https://sourceforge.net/projects/snvsniffer/files/latest/download/SNVSniffer-v2.0.4_bin_x86_64.tar.gz
+tar xvzf SNVSniffer-v2.0.4_bin_x86_64.tar.gz
+#gunzip SNVSniffer-v2.0.4_bin_x86_64.tar.gz
+
+wget http://147.8.193.36:8080/hkubioinfo/FaSD-somatic/FaSD-somatic.zip
+unzip FaSD-somatic.zip
 
 #installing Miniconda3
 #wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -33,13 +44,3 @@ source activate $2
 #conda env create --name ngs --file $1/environment.yaml
 # activate the environment
 #conda activate ngs
-
-mkdir $3
-cd $3
-
-wget https://sourceforge.net/projects/snvsniffer/files/latest/download/SNVSniffer-v2.0.4_bin_x86_64.tar.gz
-tar xvzf SNVSniffer-v2.0.4_bin_x86_64.tar.gz
-#gunzip SNVSniffer-v2.0.4_bin_x86_64.tar.gz
-
-wget http://147.8.193.36:8080/hkubioinfo/FaSD-somatic/FaSD-somatic.zip
-unzip FaSD-somatic.zip

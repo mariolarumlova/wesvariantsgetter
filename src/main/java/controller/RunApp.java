@@ -10,12 +10,6 @@ import tools.PreferencesManager;
 import tools.PropertiesGetter;
 
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.FileSystemNotFoundException;
-import java.nio.file.Paths;
-import java.nio.file.spi.FileSystemProvider;
 import java.util.*;
 
 public class RunApp extends Application {
@@ -30,7 +24,7 @@ public class RunApp extends Application {
         primaryStage.setTitle("WES pipeline ver " + PropertiesGetter.getValue("application", "version"));
         Boolean firstUsage = PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class);
         copyResourcesAndSetDefaultPaths();
-        String name = firstUsage ? "Configuration" : "MainWindow";
+        String name = firstUsage ? "SettingPaths" : "MainWindow";
         Scene scene = getScene(name);
         primaryStage.setScene(scene);
         primaryStage.show();

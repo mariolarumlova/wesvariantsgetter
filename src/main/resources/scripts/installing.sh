@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#1 path to resources, 2 path to miniconda, 3 environment name
+#1 path to miniconda, 2 environment name, 3 path to resources
 
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-bash miniconda.sh -b -p $2miniconda
-export PATH="$2miniconda/bin:$PATH"
+bash miniconda.sh -b -p $1miniconda
+export PATH="$1miniconda/bin:$PATH"
 hash -r
 conda config --set always_yes yes --set changeps1 no
 conda update -q conda
@@ -14,8 +14,8 @@ conda config --add channels defaults
 conda config --add channels conda-forge
 conda config --add channels bioconda
 conda create -q -n snakemake snakemake>=5.1.2 python=3.6
-conda create -q -n $3
-source activate $3
+conda create -q -n $2
+source activate $2
 
 #installing Miniconda3
 #wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -34,8 +34,8 @@ source activate $3
 # activate the environment
 #conda activate ngs
 
-mkdir $1/programs/
-cd $1/programs/
+mkdir $3
+cd $3
 
 wget https://sourceforge.net/projects/snvsniffer/files/latest/download/SNVSniffer-v2.0.4_bin_x86_64.tar.gz
 tar xvzf SNVSniffer-v2.0.4_bin_x86_64.tar.gz

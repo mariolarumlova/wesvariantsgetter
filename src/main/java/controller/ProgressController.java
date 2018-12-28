@@ -12,6 +12,7 @@ import tools.PreferencesManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,14 +34,18 @@ public class ProgressController implements Initializable {
         try {
             String[] cmd = getCommand();
             if (cmd != null) {
-                p = Runtime.getRuntime().exec(cmd);
+                ProcessBuilder pb = new ProcessBuilder(cmd);
+                pb.redirectErrorStream(true);
+                //prepareEnvironment(pb.environment());
+                p = pb.start();
                 p.waitFor();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(
-                        p.getInputStream()));
+                BufferedReader rd = new BufferedReader(new InputStreamReader(p.getInputStream()));
                 String line;
-                while ((line = reader.readLine()) != null) {
+                while((line = rd.readLine()) != null) {
                     textArea.setText(textArea.getText() + "\n" + line);
+                    System.out.println(line + "\n");
                 }
+                rd.close();
             } else System.out.println("Nie udało się utworzyć komendy");
         } catch (PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException | IOException | InterruptedException e) {
             GuiHandler.getInstance().showWindow(e.toString());
@@ -83,4 +88,5 @@ public class ProgressController implements Initializable {
 //        }
         return cmd;
     }
+   
 }

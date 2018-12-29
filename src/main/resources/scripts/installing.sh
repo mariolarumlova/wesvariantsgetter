@@ -2,10 +2,10 @@
 
 #1 path to miniconda, 2 environment name, 3 path to resources, 4 path to programs
 
-#cd $1
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $1miniconda.sh
-bash $1miniconda.sh -b -p $1miniconda
-export PATH="$1miniconda/bin:$PATH"
+cd $1
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda3.sh
+bash miniconda3.sh -b -p miniconda3
+export PATH="$1miniconda3/bin:$PATH"
 hash -r
 conda config --set always_yes yes --set changeps1 no
 conda update -q conda
@@ -28,6 +28,8 @@ tar xvzf SNVSniffer-v2.0.4_bin_x86_64.tar.gz
 
 wget http://147.8.193.36:8080/hkubioinfo/FaSD-somatic/FaSD-somatic.zip
 unzip FaSD-somatic.zip
+
+
 
 #installing Miniconda3
 #wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh

@@ -10,10 +10,7 @@ import javafx.stage.Stage;
 import tools.GuiHandler;
 import tools.PreferencesManager;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,6 +33,7 @@ public class ProgressController implements Initializable {
             if (cmd != null) {
                 ProcessBuilder pb = new ProcessBuilder(cmd);
                 pb.redirectErrorStream(true);
+                pb.directory(new File(PreferencesManager.getInstance().getPreference("analysis_path", String.class)));
                 //prepareEnvironment(pb.environment());
                 p = pb.start();
                 p.waitFor();

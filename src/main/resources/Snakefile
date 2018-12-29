@@ -8,7 +8,7 @@ configfile: "config.yaml"
 SAMPLES = config["samples"]["ids"]
 GENOME = config["genome"]["path"] + config["genome"]["ext"]
 GENOME_REF = config["genome"]["path"]
-PROGRAMS_DEST = config["programs"]["path"]
+PROGRAMS_DEST = config["programs"]["name"]
 RULES_DEST = config["rules"]["path"]
 
 if config["rules"]["annotate"]:

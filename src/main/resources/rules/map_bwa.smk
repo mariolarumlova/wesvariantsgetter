@@ -3,7 +3,7 @@ if config["rules"]["quality_filtering"]:
 elif config["rules"]["removing_adapters"]:
     INPUT_DEST = "fastq_wo_adapters"
 else:
-    INPUT_DEST = "fastq"
+    INPUT_DEST = config["samples"]["path"]
 
 rule bwa_map:
     input:

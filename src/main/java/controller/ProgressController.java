@@ -93,7 +93,7 @@ public class ProgressController implements Initializable {
         dest.createNewFile();
         List<String> parameters = Arrays.asList(getParameters(scriptName));
 
-        String endl = System.getProperty("line.separator");
+        //String endl = System.getProperty("line.separator");
         StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new FileReader(source));
         String ln;
@@ -101,17 +101,20 @@ public class ProgressController implements Initializable {
         {
             int i = 1;
             for (String param : parameters) {
-                ln.replace("$" + i, param);
+                System.out.println("i = " + i + ", param = " + param);
+                String target = "$" + Integer.toString(i);
+                ln = ln.replace(target, param);
                 i++;
+                System.out.println(ln);
             }
-            sb.append(ln).append(endl);
+            sb.append(ln).append("\n");
         }
         br.close();
 
         BufferedWriter bw = new BufferedWriter(new FileWriter(dest));
         bw.write(sb.toString());
         bw.close();
-        Desktop.getDesktop().open(new File(analysisPath));
+        //Desktop.getDesktop().open(new File(analysisPath));
         //FileUtils.copyFile(source, dest);
     }
     

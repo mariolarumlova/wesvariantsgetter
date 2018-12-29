@@ -288,8 +288,10 @@ public class MainWindowController implements Initializable {
         Map<String, Object> samples = parseSamplePaths();
         Map<String, Object> genome = parseGenomePath();
         Map<String, Object> rules = parseRulesSettings();
-        if (samples!=null && genome!=null && rules!=null)
-            return new Config(samples, genome, rules);
+        Map<String, Object> analysis = new HashMap<>();
+        analysis.put("path", analysisDestTextField.getText());
+        if (samples!=null && genome!=null && rules!=null && analysis != null)
+            return new Config(samples, genome, rules, analysis);
         else
             return null;
     }
@@ -410,10 +412,10 @@ public class MainWindowController implements Initializable {
             String[] normalReverseArray = normalReverseWhole.split(delimiter + "|\\.");
 
             //pozostawianie samej ścieżki do pliku
-            tumorForwardArray = Arrays.copyOfRange(tumorForwardArray, 0, tumorForwardArray.length - 3);
-            tumorReverseArray = Arrays.copyOfRange(tumorReverseArray, 0, tumorReverseArray.length - 3);
-            normalForwardArray = Arrays.copyOfRange(normalForwardArray, 0, normalForwardArray.length - 3);
-            normalReverseArray = Arrays.copyOfRange(normalReverseArray, 0, normalReverseArray.length - 3);
+            tumorForwardArray = Arrays.copyOfRange(tumorForwardArray, 0, tumorForwardArray.length - 2);
+            tumorReverseArray = Arrays.copyOfRange(tumorReverseArray, 0, tumorReverseArray.length - 2);
+            normalForwardArray = Arrays.copyOfRange(normalForwardArray, 0, normalForwardArray.length - 2);
+            normalReverseArray = Arrays.copyOfRange(normalReverseArray, 0, normalReverseArray.length - 2);
 
             //odtworzenie ścieżki poprzez dodanie delimitera
             String tumorForwardPath = String.join(delimiter, tumorForwardArray);
@@ -451,13 +453,13 @@ public class MainWindowController implements Initializable {
         String[] normalReverseArray = normalReverseWhole.split("\\\\|/|\\.");
 
         String tumorForwardId = tumorForwardArray[tumorForwardArray.length-2];
-        tumorForwardId = tumorForwardId.substring(0, tumorForwardId.length()-2);
+        tumorForwardId = tumorForwardId.substring(0, tumorForwardId.length()-1);
         String tumorReverseId = tumorReverseArray[tumorReverseArray.length-2];
-        tumorReverseId = tumorReverseId.substring(0, tumorReverseId.length()-2);
+        tumorReverseId = tumorReverseId.substring(0, tumorReverseId.length()-1);
         String normalForwardId = normalForwardArray[normalForwardArray.length-2];
-        normalForwardId = normalForwardId.substring(0, normalForwardId.length()-2);
+        normalForwardId = normalForwardId.substring(0, normalForwardId.length()-1);
         String normalReverseId = normalReverseArray[normalReverseArray.length-2];
-        normalReverseId = normalReverseId.substring(0, normalReverseId.length()-2);
+        normalReverseId = normalReverseId.substring(0, normalReverseId.length()-1);
 
         boolean pairsMatch = tumorForwardId.equals(tumorReverseId) &&
                 normalForwardId.equals(normalReverseId);

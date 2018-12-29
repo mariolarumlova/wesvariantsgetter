@@ -14,6 +14,7 @@ public class Config {
     private Map<String, Object> rules;
     private Map<String, Object> miniconda3;
     private Map<String, Object> env;
+    private Map<String, Object> analysis;
 
     public Config() throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
         Map<String, Object> miniconda3 = new HashMap<>();
@@ -29,11 +30,12 @@ public class Config {
         this.programs = programs;
     }
 
-    public Config(Map<String, Object> samples, Map<String, Object> genome, Map<String, Object> rules) throws IOException, PreferencesManager.IncorrectKeyException, PreferencesManager.UnsupportedTypeException {
+    public Config(Map<String, Object> samples, Map<String, Object> genome, Map<String, Object> rules, Map<String, Object> analysis) throws IOException, PreferencesManager.IncorrectKeyException, PreferencesManager.UnsupportedTypeException {
         this();
         this.samples = samples;
         this.genome = genome;
         this.rules = rules;
+        this.analysis = analysis;
     }
 
     public Map<String, Map<String, Object>> getAsMap() {
@@ -95,6 +97,14 @@ public class Config {
         this.env = env;
     }
 
+    public Map<String, Object> getAnalysis() {
+        return analysis;
+    }
+
+    public void setAnalysis(Map<String, Object> analysis) {
+        this.analysis = analysis;
+    }
+
     @Override
     public String toString() {
         return "Config{" +
@@ -104,6 +114,7 @@ public class Config {
                 ", rules=" + rules +
                 ", miniconda3=" + miniconda3 +
                 ", envname='" + env +
+                ", analysis=" + analysis +
                 '}';
     }
 }

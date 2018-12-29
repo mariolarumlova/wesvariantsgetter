@@ -2,8 +2,9 @@
 
 #1 path to miniconda, 2 environment name, 3 path to resources, 4 path to programs
 
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-bash miniconda.sh -b -p $1miniconda
+#cd $1
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $1miniconda.sh
+bash $1miniconda.sh -b -p $1miniconda
 export PATH="$1miniconda/bin:$PATH"
 hash -r
 conda config --set always_yes yes --set changeps1 no
@@ -15,7 +16,7 @@ conda config --add channels conda-forge
 conda config --add channels bioconda
 conda create -q -n snakemake snakemake>=5.1.2 python=3.6
 #conda create -q -n $2
-conda env create --name 2 --file $3environment.yaml
+conda env create --name $2 --file $3environment.yaml
 source activate $2
 
 mkdir $4

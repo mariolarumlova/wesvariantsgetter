@@ -7,11 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
 import tools.GuiHandler;
 import tools.PreferencesManager;
+import tools.PropertiesGetter;
+import tools.YamlParser;
 
+import java.awt.*;
 import java.io.*;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ProgressController implements Initializable {
@@ -23,36 +29,43 @@ public class ProgressController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        execute();
-    }
-
-    public void execute() {
-        Process p;
         try {
-            String[] cmd = getCommand();
-            if (cmd != null) {
-                ProcessBuilder pb = new ProcessBuilder(cmd);
-                pb.redirectErrorStream(true);
-                pb.directory(new File(PreferencesManager.getInstance().getPreference("analysis_path", String.class)));
-                //prepareEnvironment(pb.environment());
-                p = pb.start();
-                p.waitFor();
-                BufferedReader rd = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                String line;
-                while((line = rd.readLine()) != null) {
-                    textArea.setText(textArea.getText() + "\n" + line);
-                    System.out.println(line + "\n");
-                }
-                rd.close();
-            } else System.out.println("Nie udało się utworzyć komendy");
-        } catch (PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException | IOException | InterruptedException e) {
+            String scriptName = PreferencesManager.getInstance().getPreference("script_name", String.class);
+            String instructions = getInstructionsForScript(scriptName);
+            textArea.setText(instructions);
+        } catch (PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException | Exception e) {
             GuiHandler.getInstance().showWindow(e.toString());
             e.printStackTrace();
-            textArea.setText("blabablabl\nlshfs\nldgjhjk\nljdhgjk\ndjghk\nldjhgdk\ndkjhgkd\ndjdkj\ndkjhd\ndkjhgd\nldg" +
-                    "duhgjnd\nlfjghdgbk\ndkfjhgergbjk\ndfhgdhgi\nkdjhgkdgh\nkdfjhgdg\nkdjhgkd\nkdjhgd\nkhgdgh\ndjfkghd" +
-                    "djhkjf\nldnbkjdf\nndjgndkkg\ndjgkdjbg\ndkjgbdkhb\nkdjgkjf\ndbgkd\nkdjgbdkj\ndkjbndk\njdkg\nldjg\n");
         }
     }
+
+//    public void execute() {
+//        Process p;
+//        try {
+//            String[] cmd = getCommand();
+//            if (cmd != null) {
+//                ProcessBuilder pb = new ProcessBuilder(cmd);
+//                pb.redirectErrorStream(true);
+//                pb.directory(new File(PreferencesManager.getInstance().getPreference("analysis_path", String.class)));
+//                //prepareEnvironment(pb.environment());
+//                p = pb.start();
+//                p.waitFor();
+//                BufferedReader rd = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//                String line;
+//                while((line = rd.readLine()) != null) {
+//                    textArea.setText(textArea.getText() + "\n" + line);
+//                    System.out.println(line + "\n");
+//                }
+//                rd.close();
+//            } else System.out.println("Nie udało się utworzyć komendy");
+//        } catch (PreferencesManager.IncorrectKeyException | PreferencesManager.UnsupportedTypeException | IOException | InterruptedException e) {
+//            GuiHandler.getInstance().showWindow(e.toString());
+//            e.printStackTrace();
+//            textArea.setText("blabablabl\nlshfs\nldgjhjk\nljdhgjk\ndjghk\nldjhgdk\ndkjhgkd\ndjdkj\ndkjhd\ndkjhgd\nldg" +
+//                    "duhgjnd\nlfjghdgbk\ndkfjhgergbjk\ndfhgdhgi\nkdjhgkdgh\nkdfjhgdg\nkdjhgkd\nkdjhgd\nkhgdgh\ndjfkghd" +
+//                    "djhkjf\nldnbkjdf\nndjgndkkg\ndjgkdjbg\ndkjgbdkhb\nkdjgkjf\ndbgkd\nkdjgbdkj\ndkjbndk\njdkg\nldjg\n");
+//        }
+//    }
 
     public void onButtonPressed(ActionEvent actionEvent) {
         try {
@@ -65,27 +78,61 @@ public class ProgressController implements Initializable {
                 e.printStackTrace();
             }
     }
+
+    public String getInstructionsForScript(String scriptName) throws IOException, PreferencesManager.UnsupportedTypeException, PreferencesManager.IncorrectKeyException {
+        saveScriptAndOpenDestinationFolder(scriptName);
+        String propFileName = "labels_" + PropertiesGetter.getValue("application", "language");
+        return PropertiesGetter.getValue(propFileName, "openTerminal") + "./" + scriptName;
+    }
+
+    public void saveScriptAndOpenDestinationFolder(String scriptName) throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
+
+        String analysisPath = PreferencesManager.getInstance().getPreference("analysis_path", String.class);
+        File source = new File(PreferencesManager.getInstance().getPreference("scripts_path", String.class) + scriptName);
+        File dest = new File(analysisPath + scriptName);
+        dest.createNewFile();
+        List<String> parameters = Arrays.asList(getParameters(scriptName));
+
+        String endl = System.getProperty("line.separator");
+        StringBuilder sb = new StringBuilder();
+        BufferedReader br = new BufferedReader(new FileReader(source));
+        String ln;
+        while((ln = br.readLine()) != null)
+        {
+            int i = 1;
+            for (String param : parameters) {
+                ln.replace("$" + i, param);
+                i++;
+            }
+            sb.append(ln).append(endl);
+        }
+        br.close();
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(dest));
+        bw.write(sb.toString());
+        bw.close();
+        Desktop.getDesktop().open(new File(analysisPath));
+        //FileUtils.copyFile(source, dest);
+    }
     
-    public String[] getCommand() throws PreferencesManager.UnsupportedTypeException, IOException, PreferencesManager.IncorrectKeyException {
+    public String[] getParameters(String scriptName) throws PreferencesManager.UnsupportedTypeException, IOException, PreferencesManager.IncorrectKeyException {
         String resourcesPath = PreferencesManager.getInstance().getPreference("scripts_path", String.class);
         String minicondaPath = PreferencesManager.getInstance().getPreference("miniconda3", String.class);
         String environmentName = PreferencesManager.getInstance().getPreference("env_name", String.class);
         String analysisPath = PreferencesManager.getInstance().getPreference("analysis_path", String.class);
         String programsPath = PreferencesManager.getInstance().getPreference("programs_path", String.class);
-        
-        String scriptName = PreferencesManager.getInstance().getPreference("script_name", String.class);
-        String path = resourcesPath + scriptName;
-        String[] cmd = null;
+
+        String[] parameters = null;
         if ("installing.sh".equals(scriptName)) {
-            cmd = new String[] {"sh", path, minicondaPath, environmentName, resourcesPath, programsPath};
+            parameters = new String[] {minicondaPath, environmentName, resourcesPath, programsPath};
         } else if ("analyse.sh".equals(scriptName)) {
-            cmd = new String[] {"sh", path, analysisPath, environmentName};
+            parameters = new String[] {analysisPath, environmentName};
             
         }
 //        } else if ("indexing.sh".equals(scriptName)) {
-//            cmd = new String[] {"sh", path, analysisPath, environmentName};
+//            cmd = new String[] {analysisPath, environmentName};
 //        }
-        return cmd;
+        return parameters;
     }
    
 }

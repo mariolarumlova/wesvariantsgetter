@@ -12,6 +12,6 @@ rule samtools_index_genome:
     input:
         GENOME
     output:
-        GENOME_REF + ".fa.fai"
+        GENOME + ".fai"
     shell:
         "samtools faidx {input}"

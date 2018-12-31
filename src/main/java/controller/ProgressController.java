@@ -82,7 +82,8 @@ public class ProgressController implements Initializable {
     public String getInstructionsForScript(String scriptName) throws IOException, PreferencesManager.UnsupportedTypeException, PreferencesManager.IncorrectKeyException {
         saveScriptAndOpenDestinationFolder(scriptName);
         String propFileName = "labels_" + PropertiesGetter.getValue("application", "language");
-        return PropertiesGetter.getValue(propFileName, "openTerminal") + "./" + scriptName;
+        String analysisPath = PreferencesManager.getInstance().getPreference("analysis_path", String.class);
+        return PropertiesGetter.getValue(propFileName, "openTerminal") + "cd " + analysisPath + "\n./" + scriptName;
     }
 
     public void saveScriptAndOpenDestinationFolder(String scriptName) throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {

@@ -1,6 +1,8 @@
 package tools;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
 public final class PreferencesManager {
@@ -63,7 +65,21 @@ public final class PreferencesManager {
         prefs = Preferences.userRoot().node(this.getClass().getName());
         prefs.remove(key);
     }
-
+    
+//    public static void main(String [] args) {
+//    
+//        PreferencesManager.getInstance().removePreference("firstUsage");
+//        try {
+//            System.out.println(PreferencesManager.getInstance().getPreference("firstUsage", Boolean.class));
+//        } catch (UnsupportedTypeException ex) {
+//            Logger.getLogger(PreferencesManager.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(PreferencesManager.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IncorrectKeyException ex) {
+//            Logger.getLogger(PreferencesManager.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//    }
 
 //USAGE EXAMPLE//
 

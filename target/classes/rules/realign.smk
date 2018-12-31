@@ -28,7 +28,7 @@ rule gatk_realigner_target_creator:
         bam="marked_reads_wg/{sample}.bam",
         bai="marked_reads_wg/{sample}.bam.bai",
         fad=GENOME_REF + ".dict",
-        fai=GENOME_REF + ".fa.fai"
+        fai=GENOME + ".fai"
     output:
         "gatk/intervals/{sample}.intervals"
     shell:

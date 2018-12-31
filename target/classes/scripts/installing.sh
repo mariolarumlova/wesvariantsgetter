@@ -23,7 +23,7 @@ conda config --add channels bioconda
 conda create -q -n snakemake snakemake>=5.1.2 python=3.6
 #conda create -q -n $2
 source activate snakemake
-#cd TAM, GDZIE ZAPISZESZ ENVIRONMENT.YAML
+cd miniconda3
 conda env create --name $2 --file environment.yaml
 #source activate $2
 conda activate $2

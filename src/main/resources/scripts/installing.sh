@@ -5,7 +5,7 @@
 cd $1
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda3.sh
 bash miniconda3.sh -b -p miniconda3
-export PATH="$1miniconda3/bin:$PATH"
+export PATH="$1/bin:$PATH"
 hash -r
 conda config --set always_yes yes --set changeps1 no
 conda update -q conda

@@ -98,10 +98,6 @@ public class ProgressController implements Initializable {
         if ("installing.sh".equals(scriptName)) {
             PreferencesManager.getInstance().setPreference("miniconda3", minicondaPath+"miniconda3", String.class);
             minicondaPath = PreferencesManager.getInstance().getPreference("miniconda3", String.class);
-            File source = new File(PreferencesManager.getInstance().getPreference("resources_path", String.class) + "environment.yaml");
-            File dest = new File(minicondaPath + "/environment.yaml");
-            dest.createNewFile();
-            FileUtils.copyFile(source, dest);
             parameters = new String[] {minicondaPath, environmentName, resourcesPath, programsPath};
         } else if ("analyse.sh".equals(scriptName)) {
             parameters = new String[] {analysisPath, environmentName};

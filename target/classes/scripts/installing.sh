@@ -4,12 +4,11 @@
 
 cd $1
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda3.sh
-bash miniconda3.sh -b -p miniconda3
+bash miniconda3.sh -b
 
 # TO RĘCZNIE
 export PATH="$1/bin:$PATH"
 echo ". $1/etc/profile.d/conda.sh" >> ~/.bashrc
-# KONIEC RĘCZNYCH KOMEND
 
 conda install -n root _license
 hash -r
@@ -22,6 +21,8 @@ conda config --add channels conda-forge
 conda config --add channels bioconda
 conda create -q -n snakemake snakemake>=5.1.2 python=3.6
 #conda create -q -n $2
+# KONIEC RĘCZNYCH KOMEND
+
 source activate snakemake
 cd miniconda3
 conda env create --name $2 --file environment.yaml

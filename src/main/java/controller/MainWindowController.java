@@ -502,6 +502,12 @@ public class MainWindowController implements Initializable {
         File dest = new File(analysisPath + "Snakefile");
         dest.createNewFile();
         FileUtils.copyFile(source, dest);
+        
+        String minicondaPath = PreferencesManager.getInstance().getPreference("miniconda3", String.class);
+        File source2 = new File(PreferencesManager.getInstance().getPreference("resources_path", String.class) + "environment.yaml");
+        File dest2 = new File(minicondaPath + "/environment.yaml");
+        dest2.createNewFile();
+        FileUtils.copyFile(source2, dest2);
     }
 
     private class IncorrectPathException extends Throwable {

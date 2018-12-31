@@ -82,6 +82,9 @@ public class ProgressController implements Initializable {
         BufferedWriter bw = new BufferedWriter(new FileWriter(dest));
         bw.write(sb.toString());
         bw.close();
+
+        //Desktop.getDesktop().open(new File(analysisPath));
+        //FileUtils.copyFile(source, dest);
     }
     
     public String[] getParameters(String scriptName) throws PreferencesManager.UnsupportedTypeException, IOException, PreferencesManager.IncorrectKeyException {

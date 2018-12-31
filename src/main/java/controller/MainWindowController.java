@@ -319,7 +319,7 @@ public class MainWindowController implements Initializable {
         return out;
     }
 
-    public Map<String, Object> parseGenomePath() throws IncorrectPathException {
+    public Map<String, Object> parseGenomePath() throws IncorrectPathException, PreferencesManager.UnsupportedTypeException {
         Map<String, Object> out = null;
 
         if (genomeDestTextField.getText() != null) {
@@ -335,6 +335,10 @@ public class MainWindowController implements Initializable {
             out.put("id", id);
             out.put("ext", ext);
             out.put("path", path);
+            
+            PreferencesManager.getInstance().setPreference("path_to_genome", path, String.class);
+            PreferencesManager.getInstance().setPreference("genome_index", id, String.class);
+            PreferencesManager.getInstance().setPreference("genome_ext", ext, String.class);
         }
 
         return out;

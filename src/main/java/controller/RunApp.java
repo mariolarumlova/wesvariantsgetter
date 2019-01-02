@@ -61,7 +61,7 @@ public class RunApp extends Application {
         }
         PreferencesManager.getInstance().setPreference("rules_path", rulesPath, String.class);
 
-        String[] scriptsNamesArray = new String[] {"analyse.sh", "indexing.sh", "installing.sh"};//, "readme.sh", "snakemake_with_email_report.sh"};
+        String[] scriptsNamesArray = new String[] {"analyse.sh", "indexing.sh", "installing.sh", "analyse_w_indexing.sh"};//, "readme.sh", "snakemake_with_email_report.sh"};
         List<String> scriptsNames = Arrays.asList(scriptsNamesArray);
         String scriptsPath = "";
         for (String resourceName : scriptsNames) {

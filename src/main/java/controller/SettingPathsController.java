@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import tools.PropertiesGetter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import org.apache.commons.io.FileUtils;
 
 public class SettingPathsController implements Initializable {
 
@@ -78,6 +80,15 @@ public class SettingPathsController implements Initializable {
                 PreferencesManager.getInstance().setPreference("miniconda3", minicondaPathTextField.getText(), String.class);
                 PreferencesManager.getInstance().setPreference("programs_path", programsPathTextField.getText(), String.class);
                 PreferencesManager.getInstance().setPreference("firstUsage", false, Boolean.class);
+                
+                String minicondaPath = PreferencesManager.getInstance().getPreference("miniconda3", String.class);
+                File source2 = new File(PreferencesManager.getInstance().getPreference("resources_path", String.class) + "environment.yaml");
+                File minicondaDir = new File(minicondaPath + "miniconda3");
+                minicondaDir.mkdir();
+                File dest2 = new File(minicondaPath + "miniconda3/environment.yaml");
+                dest2.createNewFile();
+                FileUtils.copyFile(source2, dest2);
+                
                 Stage stage = (Stage) saveButton.getScene().getWindow();
                 Scene scene = RunApp.getScene( "Configuration");
                 stage.setScene(scene);

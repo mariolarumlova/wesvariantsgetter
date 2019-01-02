@@ -223,7 +223,11 @@ public class MainWindowController implements Initializable {
                     PreferencesManager.getInstance().setPreference("analysis_path", analysisDestTextField.getText(), String.class);
                     writeConfigFileAndCopySnakeFileToAnalysisFolder(config);
                     //TODO: Odpalanie skryptu uruchamiającego analizę
-                    PreferencesManager.getInstance().setPreference("script_name", "analyse.sh", String.class);
+                    if (prepareGenomeCheckBox.isSelected()) {
+                        PreferencesManager.getInstance().setPreference("script_name", "analyse_w_indexing.sh", String.class);
+                    } else {
+                        PreferencesManager.getInstance().setPreference("script_name", "analyse.sh", String.class);
+                    }
                     Stage stage = (Stage) analyseButton.getScene().getWindow();
                     Scene scene = RunApp.getScene( "Progress");
                     stage.setScene(scene);
@@ -502,12 +506,6 @@ public class MainWindowController implements Initializable {
         File dest = new File(analysisPath + "Snakefile");
         dest.createNewFile();
         FileUtils.copyFile(source, dest);
-        
-        String minicondaPath = PreferencesManager.getInstance().getPreference("miniconda3", String.class);
-        File source2 = new File(PreferencesManager.getInstance().getPreference("resources_path", String.class) + "environment.yaml");
-        File dest2 = new File(minicondaPath + "/environment.yaml");
-        dest2.createNewFile();
-        FileUtils.copyFile(source2, dest2);
     }
 
     private class IncorrectPathException extends Throwable {

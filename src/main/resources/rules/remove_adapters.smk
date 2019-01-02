@@ -1,6 +1,6 @@
 rule bbmap_find_adapters:
     input:
-        tool=config["miniconda3"]["path"] + "envs/" + config["env"]["name"] + "/bin/bbmerge.sh",
+        tool=config["miniconda3"]["path"] + "/envs/" + config["env"]["name"] + "/bin/bbmerge.sh",
         fastq1=config["samples"]["path"] + "/{sample}1" + config["samples"]["ext"],
         fastq2=config["samples"]["path"] + "/{sample}2" + config["samples"]["ext"]
     output:

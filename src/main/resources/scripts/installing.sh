@@ -13,8 +13,8 @@ bash miniconda3.sh -u -p miniconda3
 #to PATH in your /home/mariola/.bashrc ? [yes|no]", należy wpisać 'yes' i nacisnąć ENTER
 
 # Gdyby nie został wyświetlony komunikat o dodaniu narzędzia conda do pliku ~/.bashrc, to należy wywołać następujące komendy
-export PATH="$1/bin:$PATH"
-echo ". $1/etc/profile.d/conda.sh" >> ~/.bashrc
+export PATH="$1bin:$PATH"
+echo ". $1etc/profile.d/conda.sh" >> ~/.bashrc
 
 # Dalsza część konfiguracji musi zostać przeprowadzona w nowym terminalu. W tym celu należy skorzystać ze skrótu klawiszowego Ctrl + Alt + T, a następnie wprowadzić następujące komendy:
 conda install -n root _license
@@ -26,7 +26,6 @@ conda config --add channels conda-forge
 conda config --add channels bioconda
 conda create -q -n snakemake snakemake>=5.1.2 python=3.6
 source activate snakemake
-cd miniconda3
 conda env create --name $2 --file environment.yaml
 conda activate $2
 

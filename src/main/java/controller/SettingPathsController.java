@@ -83,9 +83,11 @@ public class SettingPathsController implements Initializable {
                 
                 String minicondaPath = PreferencesManager.getInstance().getPreference("miniconda3", String.class);
                 File source2 = new File(PreferencesManager.getInstance().getPreference("resources_path", String.class) + "environment.yaml");
-                File minicondaDir = new File(minicondaPath + "miniconda3");
+                String array[] = minicondaPath.split("/");
+                String newMinicondaPathName = array[array.length-1].equals("miniconda3") ? minicondaPath : minicondaPath+"miniconda3/";
+                File minicondaDir = new File(newMinicondaPathName);
                 minicondaDir.mkdir();
-                File dest2 = new File(minicondaPath + "miniconda3/environment.yaml");
+                File dest2 = new File(newMinicondaPathName + "environment.yaml");
                 dest2.createNewFile();
                 FileUtils.copyFile(source2, dest2);
                 

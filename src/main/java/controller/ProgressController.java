@@ -61,9 +61,11 @@ public class ProgressController implements Initializable {
 
     public void saveScript(String scriptName) throws PreferencesManager.IncorrectKeyException, IOException, PreferencesManager.UnsupportedTypeException {
 
-        String analysisPath = PreferencesManager.getInstance().getPreference("analysis_path", String.class);
+        String destPath = "installing.sh".equals(scriptName) ? 
+                            PreferencesManager.getInstance().getPreference("miniconda3", String.class) :
+                            PreferencesManager.getInstance().getPreference("analysis_path", String.class);
         File source = new File(PreferencesManager.getInstance().getPreference("scripts_path", String.class) + scriptName);
-        File dest = new File(analysisPath + scriptName);
+        File dest = new File(destPath + scriptName);
         dest.createNewFile();
         List<String> parameters = Arrays.asList(getParameters(scriptName));
 
@@ -101,9 +103,9 @@ public class ProgressController implements Initializable {
 
         String[] parameters = null;
         if ("installing.sh".equals(scriptName)) {
-            String array[] = minicondaPath.split("/");
-            String newMinicondaPathName = array[array.length-1].equals("miniconda3") ? minicondaPath : minicondaPath+"miniconda3";
-            PreferencesManager.getInstance().setPreference("miniconda3", newMinicondaPathName, String.class);
+            //String array[] = minicondaPath.split("/");
+            //String newMinicondaPathName = array[array.length-1].equals("miniconda3") ? minicondaPath : minicondaPath+"miniconda3/";
+            //PreferencesManager.getInstance().setPreference("miniconda3", newMinicondaPathName, String.class);
             minicondaPath = PreferencesManager.getInstance().getPreference("miniconda3", String.class);
             parameters = new String[] {minicondaPath, environmentName, resourcesPath, programsPath};
         } else if ("analyse.sh".equals(scriptName)) {
